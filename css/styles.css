@@ -1,6 +1,6 @@
-@keyframes backgroundscroll {
+@keyframes submove {
     from {
-        background-position: 100% 100%;
+        background-position: 80% 80%;
     }
 
     to {
@@ -21,8 +21,70 @@
     background-repeat: no-repeat;
 }
 
-.offset {
+.submove {
     background-position: 100% 100%;
-    animation-name: backgroundscroll;
-    animation-duration: 10s;
+    animation-name: submove;
+    animation-duration: 80s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(5000)
+}
+
+ @keyframes fogmove {
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 0% 100%;
+    }
+}
+
+.fog1div {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+    background-image: url("../fog1.jpg");
+    background-size: 200%;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+.fog1move {
+    background-position: 100% 100%;
+    animation-name: fogmove;
+    animation-duration: 50s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(5000)
+}
+
+.fog2div {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+    background-image: url("../fog2.jpg");
+    background-size: 200%;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+}
+
+.fog2move {
+    background-position: 100% 100%;
+    animation-name: fogmove;
+    animation-duration: 70s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(5000)
+}
+
+body {
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
