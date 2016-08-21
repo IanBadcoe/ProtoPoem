@@ -1,0 +1,8 @@
+bin/Debug/Project.vshost.exe
+bin/Debug/Project.vshost.exe.config
+bin/Debug/Project.vshost.exe.manifest
+bin/Debug/Project.exe.config
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/Project.csproj.FileListAbsolute.txt
+*.cs
+Project.v11.suo
