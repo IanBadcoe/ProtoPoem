@@ -1,10 +1,12 @@
 @keyframes submove {
     from {
-        background-position: 80% 80%;
+//        background-position: 10% 20%;
+        background-size: 10%;
     }
 
     to {
-        background-position: 0% 0%;
+//        background-position: 70% 70%;
+        background-size: 200%;
     }
 }
 
@@ -17,16 +19,15 @@
 	padding: 0;
 	overflow: hidden;
     background-image: url("../sub.png");
-    background-size: 100%;
     background-repeat: no-repeat;
 }
 
 .submove {
-    background-position: 100% 100%;
+//    background-position: 100% 100%;
     animation-name: submove;
-    animation-duration: 80s;
+    animation-duration: 10s;
     animation-fill-mode: forwards;
-    animation-timing-function: steps(5000)
+    animation-timing-function: steps(10)
 }
 
 @keyframes fogmove {
