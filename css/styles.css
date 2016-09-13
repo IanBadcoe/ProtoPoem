@@ -1,12 +1,29 @@
-@keyframes submove {
-    from {
-//        background-position: 10% 20%;
-        background-size: 10%;
+@keyframes submove1 {
+    0% {
+        background-position: 0% 0%;
+        background-image: url("../sub-sm-right.png");
     }
 
-    to {
-//        background-position: 70% 70%;
-        background-size: 200%;
+    50% {
+        background-position: 70% 30%;
+        background-image: url("../sub-sm-right.png");
+    }
+
+    50.1% {
+        background-image: url("../sub-sm-left.png");
+    }
+
+    70% {
+        background-position: 20% 40%;
+        background-image: url("../sub-sm-left.png");
+    }
+
+    70.1% {
+        background-image: url("../sub-sm-right.png");
+    }
+
+    100% {
+        background-position: 50% 100%;
     }
 }
 
@@ -18,16 +35,14 @@
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-    background-image: url("../sub.png");
     background-repeat: no-repeat;
 }
 
 .submove {
-//    background-position: 100% 100%;
-    animation-name: submove;
-    animation-duration: 10s;
+    animation-name: submove1;
+    animation-duration: 60s;
     animation-fill-mode: forwards;
-    animation-timing-function: steps(10)
+    animation-timing-function: linear
 }
 
 @keyframes fogmove {
@@ -56,8 +71,9 @@
 .fogfarmove {
     background-position: 100% 100%;
     animation-name: fogmove;
-    animation-duration: 100s;
+    animation-duration: 200s;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
     animation-timing-function: steps(5000)
 }
 
@@ -79,6 +95,7 @@
     animation-name: fogmove;
     animation-duration: 50s;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
     animation-timing-function: steps(5000)
 }
 
@@ -100,6 +117,7 @@
     animation-name: fogmove;
     animation-duration: 40s;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
     animation-timing-function: steps(5000)
 }
 

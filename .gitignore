@@ -6,3 +6,5 @@ obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 obj/Debug/Project.csproj.FileListAbsolute.txt
 *.cs
 Project.v11.suo
+.vs/Project/v14/.suo
+.vs/config/applicationhost.config
