@@ -13,6 +13,10 @@
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="js/page1.js"></script>
   <script src="js/page2.js"></script>
@@ -21,7 +25,20 @@
 </head>
 
 <body ng-app="app" ng-controller="pageController">
-  <div ng-switch="myPage">
+  <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Z-Boot</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: myPage==1}"><a href="#">1</a></li>
+        <li ng-class="{active: myPage==2}"><a href="#">2</a></li>
+        <li ng-class="{active: myPage==3}"><a href="#">3</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container-flui" ng-switch="myPage">
     <page1 ng-switch-when="1"></page1>
     <page2 ng-switch-when="2"></page2>
     <page3 ng-switch-when="3"></page3>
