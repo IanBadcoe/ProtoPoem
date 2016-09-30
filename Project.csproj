@@ -36,6 +36,13 @@
     <Content Include="index.html">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="js\app.js" />
+    <Content Include="js\page1.js" />
+    <Content Include="js\page2.js" />
+    <Content Include="js\page3.js" />
+    <Content Include="templates\page1template.html" />
+    <Content Include="templates\page2template.html" />
+    <Content Include="templates\page3template.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
