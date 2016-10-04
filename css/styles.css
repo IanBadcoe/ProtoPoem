@@ -53,6 +53,7 @@ body {
 }
 
 .submove {
+    position: relative;
     animation-name: submove1;
     animation-duration: 60s;
     animation-fill-mode: forwards;
