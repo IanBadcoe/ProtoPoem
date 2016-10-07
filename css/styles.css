@@ -201,4 +201,6 @@ body {
 .anim-div{
     position: absolute;
     overflow: hidden;
+    box-sizing: border-box;
+    border: solid red 1px;
 }
