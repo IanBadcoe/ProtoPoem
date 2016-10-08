@@ -64,8 +64,24 @@ body {
     display: block;
 }
 
+@keyframes fog-background-move {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: -5%;
+    }
+}
+
 .fog-background {
+    position: relative;
     height: 100%;
+
+    animation-name: fog-background-move;
+    animation-duration: 16s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
 }
 
 @keyframes fog-taller1-move {
@@ -84,7 +100,7 @@ body {
     top: -100%;
 
     animation-name: fog-taller1-move;
-    animation-duration: 30s;
+    animation-duration: 16s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
@@ -105,7 +121,7 @@ body {
     top: -210%;
 
     animation-name: fog-taller2-move;
-    animation-duration: 30s;
+    animation-duration: 16s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
