@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
    angular.module("page3", [])
 	.directive("page3", function () {
