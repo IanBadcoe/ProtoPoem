@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var sound = new Howl({
+/*    var sound = new Howl({
         src: ['sound/pin.mp3'],
         panningModel: 'HRTF',
         refDistance: 200,
@@ -18,7 +18,7 @@
 
     sound.on('end', function(){
         pin();
-    });
+    }); */
 
     angular.module('app', ["page1", "page2", "page3"])
         .controller('pageController', ['$scope', '$location', '$window', function ($scope, $location, $window) {
@@ -28,9 +28,9 @@
                 $scope.$apply();
             });
 
-            Howler.pos(0, 0, 0);
+/*            Howler.pos(0, 0, 0);
 
-            pin();
+            pin(); */
         }
         ])
 })();

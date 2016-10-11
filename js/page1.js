@@ -1,10 +1,10 @@
 (function () {
-  angular.module("page1", [])
+  angular.module("page1", ['page1soundscapeModule'])
     .directive("page1", function () {
       return {
         templateUrl: "templates/page1template.html",
         restrict: "E",
-        controller: ['$scope', '$element', function ($scope, $element) {
+        controller: ['$scope', '$element', 'page1soundscape', function ($scope, $element, page1soundscape) {
         }],
         link: function(scope, elem, attrs) {
           background_ng_elem = elem.find(".fog-background");
@@ -30,6 +30,10 @@
           background_ng_elem.on("load", function() {
             scope.$apply();
           });
+
+          page1soundscape.start();
+
+          elem.on("$destroy", function() { page1soundscape.end(); });
         }
       };
     });
