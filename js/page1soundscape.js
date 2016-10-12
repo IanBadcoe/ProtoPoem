@@ -43,6 +43,12 @@
 
                 var id = which.play();
                 which.pos(x, y, z, id);
+                which.fade(0, 1, 200, id);
+                which.once("fade", function() {
+                    // duration in seconds, fade in milliseconds
+                    var remain = (which.duration(id) - which.seek(id)) * 1000;
+                    which.fade(1, 0, remain, id);
+                }, id);
             }
 
             var running;
@@ -53,7 +59,7 @@
 
                 launchSound();
 
-                setTimeout(step, 1000);
+                setTimeout(step, Math.random() * 500 + 500);
             }
 
             this.start = function() { running = true; step(); };
