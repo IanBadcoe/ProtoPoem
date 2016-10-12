@@ -28,9 +28,7 @@
                 $scope.$apply();
             });
 
-/*            Howler.pos(0, 0, 0);
-
-            pin(); */
+            Howler.pos(0, 0, 0);
         }
         ])
 })();
