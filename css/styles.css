@@ -57,6 +57,7 @@ body {
 }
 
 .fog-img {
+    position: relative;
 	border: 0;
 	margin-left: auto;
 	margin-right: auto;
@@ -66,11 +67,11 @@ body {
 
 @keyframes fog-background-move {
     0% {
-        top: 0%;
+        top: -100%;
     }
 
     100% {
-        top: -5%;
+        top: -105%;
     }
 }
 
@@ -82,15 +83,22 @@ body {
     animation-duration: 16s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+
+    top: -100%;
+}
+
+.fog-background-dummy {
+    position: relative;
+    height: 100%;
 }
 
 @keyframes fog-taller1-move {
     0% {
-        top: -100%;
+        top: -200%;
     }
 
     100% {
-        top: -107%;
+        top: -207%;
     }
 }
 
@@ -107,11 +115,11 @@ body {
 
 @keyframes fog-taller2-move {
     0% {
-        top: -210%;
+        top: -310%;
     }
 
     100% {
-        top: -220%;
+        top: -320%;
     }
 }
 
@@ -126,9 +134,19 @@ body {
     animation-timing-function: linear;
 }
 
-.anim-div{
+.anim-div {
     position: absolute;
     overflow: hidden;
     box-sizing: border-box;
-    border: solid red 1px;
+    border: solid red 7px;
+}
+
+.sparkle-test {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+.temp-blue {
+    border: solid blue 3px;
 }

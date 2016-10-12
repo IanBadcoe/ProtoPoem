@@ -10,7 +10,7 @@
           $element.on("$destroy", function() { page1soundscape.end(); });
         }],
         link: function(scope, elem, attrs) {
-          background_ng_elem = elem.find(".fog-background");
+          background_ng_elem = elem.find(".fog-background-dummy");
           anim_ng_elem = angular.element(elem).find(".anim-div");
           scope.$watch(function() {
             var f_dom = background_ng_elem.get(0);
