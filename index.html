@@ -40,7 +40,7 @@
 </head>
 
 <body ng-app="app" ng-controller="pageController">
-  <div class="container-fluid navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid navbar-inverse navbar-fixed-bottom my-nav-bar">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -58,10 +58,15 @@
     </div>
   </div>
   
-  <div class="container-fluid" ng-switch="myPage">
-    <page1 ng-switch-when="1"></page1>
-    <page2 ng-switch-when="2"></page2>
-    <page3 ng-switch-when="3"></page3>
+  <div class="container-fluid zero-spacing" ng-switch="myPage">
+    <div class="whole-screen zero-spacing">
+      <!-- this following div we smart-resize with js to make the largest 16:9 rectangle that fits on the whole-screen minus the nav-bar --> 
+      <div class="live-area">
+        <page1 ng-switch-when="1"></page1>
+        <page2 ng-switch-when="2"></page2>
+        <page3 ng-switch-when="3"></page3>
+      </div>
+    </div>
   </div>
 </body>
 </html>

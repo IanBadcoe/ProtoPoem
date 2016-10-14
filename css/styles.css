@@ -49,9 +49,6 @@ body {
     position: absolute;
 	width: 100%;
 	height: 100%;
-	border: 0;
-	margin: 0;
-	padding: 0;
     /* because we make some images taller than the div to allow perspective scrolling */
     overflow: hidden;
 }
@@ -149,4 +146,21 @@ body {
 
 .temp-blue {
     border: solid blue 3px;
+}
+
+.page-2-test{
+    width: 100%;
+    height: 100%;
+    border: solid blue 1px;
+    box-sizing: border-box;
+}
+
+.zero-spacing {
+	margin: 0;
+	padding: 0;
+    border: 0;
+}
+
+.live-area {
+    position: absolute;
 }
