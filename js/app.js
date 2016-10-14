@@ -3,6 +3,9 @@
 (function () {
     angular.module('app', ["page1", "page2", "page3"])
         .controller('pageController', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+            $scope.myPage = 2;
+            $scope.pageNavigate = function(i) { $scope.myPage = i; };
+
             function resizeLiveArea() {
                 var whole_screen_ng_elem = angular.element(".whole-screen");
                 var live_area_ng_elem = angular.element(".live-area");
@@ -47,11 +50,9 @@
                 live_area_ng_elem.css("height", live_height + "px");        
             }
             
-            $scope.myPage = 2;
-            $scope.pageNavigate = function(i) { $scope.myPage = i; };
-            angular.element($window).on("resize", function() {
-                resizeLiveArea();
-            });
+            angular.element($window).on("resize", resizeLiveArea );
+
+            setTimeout(resizeLiveArea, 0);
 
             Howler.pos(0, 0, 0);
         }

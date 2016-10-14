@@ -1,7 +1,30 @@
-body {
-	border: 0;
+body, .zero-spacing {
 	margin: 0;
 	padding: 0;
+    border: 0;
+}
+
+/* we need this absolutely positioned but we also use this class to find it in the js */
+.live-area {
+    position: absolute;
+    /* because we make some images taller than the div to allow perspective scrolling */
+    overflow: hidden;
+}
+
+/* fill-parent is used widely to position divs over the whole .live-area
+** whole-screen is used in js to identify the outer element that we read our size from
+** after a resize */
+.fill-parent, .whole-screen {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.fill-parent-scroll-img {
+    position: absolute;
+	width: 100%;
+    /* because we make some images taller than the div to allow perspective scrolling */
+	height: 110%;
 }
 
 @keyframes submove1 {
@@ -45,65 +68,34 @@ body {
     width: 30%;
 }
 
-.whole-screen {
-    position: absolute;
-	width: 100%;
-	height: 100%;
-    /* because we make some images taller than the div to allow perspective scrolling */
-    overflow: hidden;
-}
-
-.fog-img {
-    position: relative;
-	border: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0;
-    display: block;
-}
-
 @keyframes fog-background-move {
     0% {
-        top: -100%;
+        top: 0%;
     }
 
     100% {
-        top: -105%;
+        top: -5%;
     }
 }
 
 .fog-background {
-    position: relative;
-    height: 100%;
-
     animation-name: fog-background-move;
     animation-duration: 16s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
-
-    top: -100%;
-}
-
-.fog-background-dummy {
-    position: relative;
-    height: 100%;
 }
 
 @keyframes fog-taller1-move {
     0% {
-        top: -200%;
+        top: 0%;
     }
 
     100% {
-        top: -207%;
+        top: -7%;
     }
 }
 
 .fog-taller1 {
-    position: relative;
-    height: 110%;
-    top: -100%;
-
     animation-name: fog-taller1-move;
     animation-duration: 16s;
     animation-fill-mode: forwards;
@@ -112,30 +104,34 @@ body {
 
 @keyframes fog-taller2-move {
     0% {
-        top: -310%;
+        top: 0%;
     }
 
     100% {
-        top: -320%;
+        top: -10%;
     }
 }
 
 .fog-taller2 {
-    position: relative;
-    height: 110%;
-    top: -210%;
-
     animation-name: fog-taller2-move;
     animation-duration: 16s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
 
-.anim-div {
+/* temporary debugging helpers */
+.show-div-red {
     position: absolute;
     overflow: hidden;
     box-sizing: border-box;
     border: solid red 7px;
+}
+
+.show-div-blue {
+    position: absolute;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: solid blue 3px;
 }
 
 .sparkle-test {
@@ -144,23 +140,9 @@ body {
     top: 50%;
 }
 
-.temp-blue {
-    border: solid blue 3px;
-}
-
 .page-2-test{
     width: 100%;
     height: 100%;
     border: solid blue 1px;
     box-sizing: border-box;
-}
-
-.zero-spacing {
-	margin: 0;
-	padding: 0;
-    border: 0;
-}
-
-.live-area {
-    position: absolute;
 }
