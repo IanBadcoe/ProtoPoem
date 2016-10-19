@@ -119,6 +119,10 @@ body, .zero-spacing {
     animation-timing-function: linear;
 }
 
+.sparkle {
+    position: absolute;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;
