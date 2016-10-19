@@ -11,7 +11,7 @@
     function setSparkleAddRunning(scope)
     {
         function addSparkle() {
-            var hp = phrases.filter(function(x) { !(x.found || x.in_use)});
+            var hp = phrases.filter(function(x) { return !(x.found || x.in_use)});
 
             if (hp.length != 0)
             {
@@ -19,16 +19,22 @@
 
                 phrase.in_use = true;
 
-                phrase.x = -100;
+                phrase.x = 0;
                 phrase.y = Math.random() * 100;
                 
-                var plane = randomElement(sparklePlanes);
+                var plane_rec = randomElement(sparklePlanes);
+                var plane = plane_rec.plane;
 
-                phrase.v = sparklePlanes.scale;
+                phrase.v = plane_rec.scale;
                 phrase.plane = plane;
 
                 var el = angular.element("<sparkle/>");
-                el.css({ top: phrase.y, left: phrase.x});
+                el.css(
+                    {
+                        top: "{y}px".supplant(phrase),
+                        left: "{x}px".supplant(phrase),
+                    }
+                    );
 
                 plane.append(el);
             }
@@ -38,7 +44,7 @@
                 setTimeout(addSparkle, 1000);
             }
         };
-        
+
         setTimeout(addSparkle, 1000);
     };
 
@@ -52,14 +58,12 @@
 
                     $element.on("$destroy", function () { page1soundscape.end(); });
 
-                    sparklePlanes[0].plane = angular.element("#sparkle-plane-1");
-                    sparklePlanes[1].plane = angular.element("#sparkle-plane-2");
-                    sparklePlanes[2].plane = angular.element("#sparkle-plane-3");
-                    sparklePlanes[3].plane = angular.element("#sparkle-plane-4");
+                    // one per plane
+                    $scope.sparkles = [[phrases[0]], [], [], []];
 
                     $scope.terminate = false;
 
-                    setSparkleAddRunning($scope);
+//                    setSparkleAddRunning($scope);
                 }]
             };
         });

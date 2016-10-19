@@ -4,9 +4,9 @@
       return {
         templateUrl: "templates/sparklePlaneTemplate.html",
         restrict: "E",
+        scope: { sparkles: "=" },
         controller: ['$scope', '$element', function ($scope, $element) {
-        }],
-        transclude: true
+        }]
       };
     });
 })();
