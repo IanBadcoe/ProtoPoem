@@ -21,7 +21,7 @@
 
                 phrase.x = 0;
                 phrase.y = Math.random() * 100;
-                
+
                 var plane_rec = randomElement(sparklePlanes);
                 var plane = plane_rec.plane;
 
@@ -39,7 +39,7 @@
                 plane.append(el);
             }
 
-            if (scope.terminate)
+            if (!scope.terminate)
             {
                 setTimeout(addSparkle, 1000);
             }
@@ -56,10 +56,13 @@
                 controller: ['$scope', '$element', 'page1soundscape', function ($scope, $element, page1soundscape) {
                     page1soundscape.start();
 
-                    $element.on("$destroy", function () { page1soundscape.end(); });
+                    $element.on("$destroy", function () {
+                      page1soundscape.end();
+                      scope.terminate = true;
+                    });
 
                     // one per plane
-                    $scope.sparkles = [[phrases[0]], [], [], []];
+                    $scope.phrases = [[], [], [], []];
 
                     $scope.terminate = false;
 

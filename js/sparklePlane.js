@@ -4,7 +4,7 @@
       return {
         templateUrl: "templates/sparklePlaneTemplate.html",
         restrict: "E",
-        scope: { sparkles: "=" },
+        scope: { phrases: "=" },
         controller: ['$scope', '$element', function ($scope, $element) {
         }]
       };
