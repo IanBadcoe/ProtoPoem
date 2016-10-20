@@ -4,48 +4,51 @@
         return { text: txt, in_use: false, found: false };
     });
 
-    var sparklePlanes = [{ scale: 0.3 }, { scale: 0.6 }, { scale: 0.8 }, { scale: 1.0 }];
+    var sparkle_plane_scales = [0.3, 0.6, 0.8, 1.0];
+
+    var num_sparkles = 0;
+    var sparkle_loop_cycle = 0;
 
     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
-    function setSparkleAddRunning(scope)
-    {
-        function addSparkle() {
-            var hp = phrases.filter(function(x) { return !(x.found || x.in_use)});
+    function setSparkleLoopRunning($scope, $timeout) {
+        function sparkleLoop() {
+            sparkle_loop_cycle = (sparkle_loop_cycle + 1) % 10;
 
-            if (hp.length != 0)
-            {
-                var phrase = randomElement(hp);
+            if (!sparkle_loop_cycle) {
+                var hp = phrases.filter(function (x) { return !(x.found || x.in_use) });
 
-                phrase.in_use = true;
+                if (hp.length != 0 && num_sparkles < 10) {
+                    var phrase = randomElement(hp);
 
-                phrase.x = 0;
-                phrase.y = Math.random() * 100;
+                    phrase.in_use = true;
 
-                var plane_rec = randomElement(sparklePlanes);
-                var plane = plane_rec.plane;
+                    phrase.x = 0;
+                    phrase.y = Math.random() * 100;
 
-                phrase.v = plane_rec.scale;
-                phrase.plane = plane;
+                    var plane_idx = Math.floor(Math.random() * 4);
 
-                var el = angular.element("<sparkle/>");
-                el.css(
-                    {
-                        top: "{y}px".supplant(phrase),
-                        left: "{x}px".supplant(phrase),
-                    }
-                    );
+                    phrase.v = sparkle_plane_scales[plane_idx];
 
-                plane.append(el);
+                    $scope.phrases[plane_idx].push(phrase);
+                    num_sparkles++;
+                }
             }
 
-            if (!scope.terminate)
+            var hp = [].concat.apply([], $scope.phrases).filter(function (x) { return x.in_use; });
+
+            for(phrase in hp)
             {
-                setTimeout(addSparkle, 1000);
+                if (phrase.x > 100)
+                {}
+            }
+
+            if (!$scope.terminate) {
+                $timeout(sparkleLoop, 50);
             }
         };
 
-        setTimeout(addSparkle, 1000);
+        $timeout(sparkleLoop, 50);
     };
 
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule'])
@@ -53,21 +56,22 @@
             return {
                 templateUrl: "templates/page1template.html",
                 restrict: "E",
-                controller: ['$scope', '$element', 'page1soundscape', function ($scope, $element, page1soundscape) {
-                    page1soundscape.start();
+                controller: ['$scope', '$element', 'page1soundscape', '$timeout',
+                    function ($scope, $element, page1soundscape, $timeout) {
+                        page1soundscape.start();
 
-                    $element.on("$destroy", function () {
-                      page1soundscape.end();
-                      scope.terminate = true;
-                    });
+                        $element.on("$destroy", function () {
+                            page1soundscape.end();
+                            scope.terminate = true;
+                        });
 
-                    // one per plane
-                    $scope.phrases = [[], [], [], []];
+                        // one per plane
+                        $scope.phrases = [[], [], [], []];
 
-                    $scope.terminate = false;
+                        $scope.terminate = false;
 
-//                    setSparkleAddRunning($scope);
-                }]
+                        setSparkleLoopRunning($scope, $timeout);
+                    }]
             };
         });
 })();
