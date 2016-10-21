@@ -1,5 +1,8 @@
 (function () {
-    var phrases = ["Too many stoats", "not enough string", "but don't ask me..."];
+    var phrases = ["Too many stoats", "not enough string", "but don't ask me...",
+        "I have no", "all good prunes", "sppons",
+        "hats", "tree", "ape",
+        "nose", "belief"];
     phrases = phrases.map(function (txt) {
         return { text: txt, in_use: false, found: false };
     });
@@ -35,12 +38,33 @@
                 }
             }
 
-            var hp = [].concat.apply([], $scope.phrases).filter(function (x) { return x.in_use; });
-
-            for(phrase in hp)
+            for(var i = 0; i < 4; i++)
             {
-                if (phrase.x > 100)
-                {}
+                if ($scope.phrases[i] === null)
+                    alert("bob");
+
+                for(var j = 0; j < $scope.phrases[i].length; )
+                {
+                    var phrase = $scope.phrases[i][j];
+
+                    phrase.x += phrase.v;
+                    phrase.style = {
+                        left: "{x}%".format(phrase),
+                        top: "{y}%".format(phrase),
+                        width: "{v*10}%".format(phrase)
+                    };
+
+                    if (phrase.x > 100)
+                    {
+                        $scope.phrases[i].splice(j, 1);
+                        phrase.in_use = false;
+                        num_sparkles--;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
             }
 
             if (!$scope.terminate) {
