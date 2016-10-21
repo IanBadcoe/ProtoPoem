@@ -14,7 +14,7 @@
 
     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
-    function setSparkleLoopRunning($scope, $timeout) {
+    function setSparkleLoopRunning($scope, $timeout, $rootScope) {
         function sparkleLoop() {
             sparkle_loop_cycle = (sparkle_loop_cycle + 1) % 10;
 
@@ -51,7 +51,7 @@
                     phrase.style = {
                         left: "{x}%".format(phrase),
                         top: "{y}%".format(phrase),
-                        width: "{v*10}%".format(phrase)
+                        width: "{w}%".format( { w: phrase.v * 10 } )
                     };
 
                     if (phrase.x > 100)
@@ -80,8 +80,8 @@
             return {
                 templateUrl: "templates/page1template.html",
                 restrict: "E",
-                controller: ['$scope', '$element', 'page1soundscape', '$timeout',
-                    function ($scope, $element, page1soundscape, $timeout) {
+                controller: ['$scope', '$element', 'page1soundscape', '$timeout', '$rootScope',
+                    function ($scope, $element, page1soundscape, $timeout, $rootScope) {
                         page1soundscape.start();
 
                         $element.on("$destroy", function () {
@@ -94,7 +94,7 @@
 
                         $scope.terminate = false;
 
-                        setSparkleLoopRunning($scope, $timeout);
+                        setSparkleLoopRunning($scope, $timeout, $rootScope);
                     }]
             };
         });
