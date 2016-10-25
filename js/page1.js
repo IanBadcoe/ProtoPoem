@@ -11,12 +11,52 @@
 
     var num_sparkles = 0;
     var sparkle_loop_cycle = 0;
+    var time_step = 50;
+    var reverse_step = 0;
 
     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
     function setSparkleLoopRunning($scope, $timeout, $rootScope) {
+        function sparkleStep(phrase)
+        {
+            if (reverse_step > 0 && phrase.x < reverse_step)
+            {
+                phrase.x -= phrase.v * 0.5;
+            }
+            else if (phrase.loopStep != 0)
+            {
+                var ang = phrase.loopStep / 8 * Math.PI;
+                var sa = Math.sin(ang);
+                var ca = Math.cos(ang);
+
+                phrase.x += ca * phrase.v * phrase.loopXSize;
+                phrase.y += sa * phrase.v * $rootScope.aspect_ratio * phrase.loopYSize;
+
+                phrase.loopStep--;
+            }
+            else
+            {
+                if (Math.random() < time_step * 0.0003)
+                {
+                    phrase.loopStep = 16;
+                    phrase.loopXSize = (Math.random() + 1) / 2;
+                    phrase.loopYSize = phrase.loopXSize * (Math.random() > 0.5 ? -1 : 1);
+                }
+
+                phrase.x += phrase.v * 0.5;
+            }
+        }
         function sparkleLoop() {
             sparkle_loop_cycle = (sparkle_loop_cycle + 1) % 10;
+
+            if (reverse_step > -100)
+            {
+                reverse_step -= 3;
+            }
+            else
+            {
+                if (Math.random() < time_step * 0.0001) reverse_step = 100;
+            }
 
             if (!sparkle_loop_cycle) {
                 var hp = phrases.filter(function (x) { return !(x.found || x.in_use) });
@@ -25,6 +65,8 @@
                     var phrase = randomElement(hp);
 
                     phrase.in_use = true;
+                    phrase.reverseStep = 0;
+                    phrase.loopStep = 0;
 
                     phrase.x = 0;
                     phrase.y = Math.random() * 100;
@@ -40,14 +82,12 @@
 
             for(var i = 0; i < 4; i++)
             {
-                if ($scope.phrases[i] === null)
-                    alert("bob");
-
                 for(var j = 0; j < $scope.phrases[i].length; )
                 {
                     var phrase = $scope.phrases[i][j];
 
-                    phrase.x += phrase.v;
+                    sparkleStep(phrase);
+
                     phrase.style = {
                         left: "{x}%".format(phrase),
                         top: "{y}%".format(phrase),
@@ -68,11 +108,11 @@
             }
 
             if (!$scope.terminate) {
-                $timeout(sparkleLoop, 50);
+                $timeout(sparkleLoop, time_step);
             }
         };
 
-        $timeout(sparkleLoop, 50);
+        $timeout(sparkleLoop, time_step);
     };
 
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule'])

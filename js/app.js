@@ -32,6 +32,8 @@
             $rootScope.live_width = w;
         }
 
+        $rootScope.aspect_ratio = $rootScope.live_width / $rootScope.live_height;
+
         live_area_ng_elem.css("left", $rootScope.live_left + "px");
         live_area_ng_elem.css("top", $rootScope.live_top + "px");
         live_area_ng_elem.css("width", $rootScope.live_width + "px");
