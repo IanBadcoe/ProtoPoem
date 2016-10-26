@@ -66,6 +66,8 @@ body, .zero-spacing {
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     width: 30%;
+    /* let sparkles get properly hidden behind it */
+    pointer-events: auto;
 }
 
 @keyframes fog-background-move {
@@ -121,6 +123,15 @@ body, .zero-spacing {
 
 .sparkle {
     position: absolute;
+    pointer-events: auto;
+}
+
+.sparkle:hover {
+    border: solid white 1px;
+}
+
+.no-hover {
+    pointer-events: none;
 }
 
 /* temporary debugging helpers */
