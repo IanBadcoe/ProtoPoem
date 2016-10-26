@@ -12,7 +12,9 @@
     var num_sparkles = 0;
     var sparkle_loop_cycle = 0;
     var time_step = 50;
+    var step_scale = time_step / 100;  // use this to scale things so hopefully if time_step is changed probabilities and velocities remain about the same
     var reverse_step = 0;
+    var v_scale = 0.5;
 
     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
@@ -21,30 +23,32 @@
         {
             if (reverse_step > 0 && phrase.x < reverse_step)
             {
-                phrase.x -= phrase.v * 0.5;
+                phrase.x -= phrase.v * v_scale * step_scale;
             }
-            else if (phrase.loopStep != 0)
+            else if (phrase.loopAng > 0)
             {
-                var ang = phrase.loopStep / 8 * Math.PI;
-                var sa = Math.sin(ang);
-                var ca = Math.cos(ang);
+                // everything about 2PI cancels and if we want to go around the circle
+                // at the same speed we were moving, only the radius and speed matter to the step_size
+                phrase.loopAng -= v_scale / phrase.loopXSize * step_scale;
+                var sa = Math.sin(-phrase.loopAng);
+                var ca = Math.cos(-phrase.loopAng);
 
                 phrase.x += ca * phrase.v * phrase.loopXSize;
-                phrase.y += sa * phrase.v * $rootScope.aspect_ratio * phrase.loopYSize;
-
-                phrase.loopStep--;
+                phrase.y += sa * phrase.v * phrase.loopYSize;
             }
             else
             {
-                if (Math.random() < time_step * 0.0003)
+                if (Math.random() < time_step * 0.0006)
                 {
-                    phrase.loopStep = 16;
+                    phrase.loopAng = 2 * Math.PI;
                     phrase.loopXSize = (Math.random() + 1) / 2;
-                    phrase.loopYSize = phrase.loopXSize * (Math.random() > 0.5 ? -1 : 1);
+                    phrase.loopYSize = phrase.loopXSize * (Math.random() > 0.5 ? -1 : 1) * $rootScope.aspect_ratio;
                 }
 
-                phrase.x += phrase.v * 0.5;
+                phrase.x += phrase.v * v_scale * step_scale;
             }
+
+            phrase.y += Math.sin(phrase.x * phrase.wobble_freq + phrase.wobble_phase) * step_scale * phrase.wobble_scale * $rootScope.aspect_ratio;
         }
         function sparkleLoop() {
             sparkle_loop_cycle = (sparkle_loop_cycle + 1) % 10;
@@ -65,8 +69,10 @@
                     var phrase = randomElement(hp);
 
                     phrase.in_use = true;
-                    phrase.reverseStep = 0;
-                    phrase.loopStep = 0;
+                    phrase.loopAng = -1;
+                    phrase.wobble_scale = (Math.random() + 1) / 5;
+                    phrase.wobble_phase = Math.random() * 2 * Math.PI;
+                    phrase.wobble_freq = (Math.random() + 0.5) / 4;
 
                     phrase.x = 0;
                     phrase.y = Math.random() * 100;
