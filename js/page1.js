@@ -49,6 +49,7 @@
             }
 
             phrase.y += Math.sin(phrase.x * phrase.wobble_freq + phrase.wobble_phase) * step_scale * phrase.wobble_scale * $rootScope.aspect_ratio;
+            phrase.angle += phrase.rotation * step_scale;
         }
         function sparkleLoop() {
             sparkle_loop_cycle = (sparkle_loop_cycle + 1) % 10;
@@ -73,6 +74,8 @@
                     phrase.wobble_scale = (Math.random() + 1) / 5;
                     phrase.wobble_phase = Math.random() * 2 * Math.PI;
                     phrase.wobble_freq = (Math.random() + 0.5) / 4;
+                    phrase.angle = Math.random() * Math.PI * 2;
+                    phrase.rotation = (Math.random() - 0.3) * 20;
 
                     phrase.x = 0;
                     phrase.y = Math.random() * 100;
@@ -80,6 +83,7 @@
                     var plane_idx = Math.floor(Math.random() * 4);
 
                     phrase.v = sparkle_plane_scales[plane_idx];
+                    phrase.w = phrase.v * 10;
 
                     $scope.phrases[plane_idx].push(phrase);
                     num_sparkles++;
@@ -97,7 +101,8 @@
                     phrase.style = {
                         left: "{x}%".format(phrase),
                         top: "{y}%".format(phrase),
-                        width: "{w}%".format( { w: phrase.v * 10 } )
+                        width: "{w}%".format(phrase),
+                        transform: "rotate({angle}deg)".format(phrase)
                     };
 
                     if (phrase.x > 100)

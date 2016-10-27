@@ -127,7 +127,7 @@ body, .zero-spacing {
 }
 
 .sparkle:hover {
-    border: solid white 1px;
+    content: url("/img/sparkle-hover.png");
 }
 
 .no-hover {
