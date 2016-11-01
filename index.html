@@ -38,6 +38,7 @@
   <script src="js/page2.js"></script>
   <script src="js/page3.js"></script>
   <script src="js/sparkle.js"></script>
+  <script src="js/animationEnd.js"></script>
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 </head>
@@ -60,10 +61,10 @@
       </ul>
     </div>
   </div>
-  
+
   <div class="container-fluid zero-spacing" ng-switch="myPage">
     <div class="whole-screen zero-spacing">
-      <!-- this following div we smart-resize with js to make the largest 16:9 rectangle that fits on the whole-screen minus the nav-bar --> 
+      <!-- this following div we smart-resize with js to make the largest 16:9 rectangle that fits on the whole-screen minus the nav-bar -->
       <div class="live-area">
         <page1 ng-switch-when="1"></page1>
         <page2 ng-switch-when="2"></page2>

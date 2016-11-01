@@ -126,7 +126,7 @@
         $timeout(sparkleLoop, time_step);
     };
 
-    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule'])
+    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule'])
         .directive("page1", function () {
             return {
                 templateUrl: "templates/page1template.html",
@@ -146,6 +146,8 @@
                         $scope.terminate = false;
 
                         setSparkleLoopRunning($scope, $timeout, $rootScope);
+
+                        $scope.test = function() { alert("xxx"); };
                     }]
             };
         });

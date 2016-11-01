@@ -1,4 +1,4 @@
-/*(function () {
+(function () {
     angular.module("animationEndModule", [])
         .directive("animationEnd", function () {
             return {
@@ -7,7 +7,7 @@
                     animationEnd: '&'
                 },
                 link: function (scope, element) {
-                    var callback = scope.animationend(),
+                    var callback = scope.animationEnd(),
                         events = 'animationend webkitAnimationEnd MSAnimationEnd' +
                             'transitionend webkitTransitionEnd';
 
@@ -17,4 +17,4 @@
                 }
             };
         });
-})();*/
+})();
