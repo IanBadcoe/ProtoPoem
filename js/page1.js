@@ -147,8 +147,39 @@
 
                         setSparkleLoopRunning($scope, $timeout, $rootScope);
 
-                        $scope.test = function() { alert("xxx"); };
+                        $scope.nextSubPage = function() {
+                            $scope.mySubPage = $scope.mySubPage % 3 + 1;
+                        };
+
+                        $scope.mySubPage = 1;
                     }]
+            };
+        })
+        .directive("page1a", function() {
+            return {
+                templateUrl: "templates/page1aTemplate.html",
+                restrict: "E",
+                controller: ['$scope', function($scope) {
+                    $scope.debug = "page1a";
+                }]
+            };
+        })
+        .directive("page1b", function() {
+            return {
+                templateUrl: "templates/page1bTemplate.html",
+                restrict: "E",
+                controller: ['$scope', function($scope) {
+                    $scope.debug = "page1b";
+                }]
+            };
+        })
+        .directive("page1c", function() {
+            return {
+                templateUrl: "templates/page1cTemplate.html",
+                restrict: "E",
+                controller: ['$scope', function($scope) {
+                    $scope.debug = "page1c";
+                }]
             };
         });
 })();
