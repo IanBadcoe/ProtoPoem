@@ -3,11 +3,11 @@
         .directive("animationEnd", function () {
             return {
                 restrict: "A",
-                scope: {
+                $scope: {
                     animationEnd: '&'
                 },
-                link: function (scope, element) {
-                    var callback = scope.animationEnd(),
+                link: function ($scope, element) {
+                    var callback = $scope.animationEnd(),
                         events = 'animationend webkitAnimationEnd MSAnimationEnd' +
                             'transitionend webkitTransitionEnd';
 
