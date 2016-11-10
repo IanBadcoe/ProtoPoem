@@ -7,7 +7,7 @@
         return { text: txt, in_use: false, found: false };
     });
 
-    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule', 'sparkleSys'])
+    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule', 'sparkleSysModule'])
         .directive("page1", ['sparkleSys', function (sparkleSys) {
             return {
                 templateUrl: "templates/page1template.html",
@@ -25,12 +25,12 @@
 
                         $scope.nextSubPage = function() {
                             $scope.mySubPage = $scope.mySubPage % 3 + 1;
-                            $scope.sparkleSys.setSubPage($scope.mySubPage);
+                            $scope.sparkleSys.beginSubPage();
                         };
 
                         $scope.mySubPage = 1;
 
-                        $scope.sparkleSys = sparkleSys.init(phrases, $scope.mySubPage);
+                        $scope.sparkleSys = sparkleSys.init(phrases, $scope);
                     }]
             };
         }])

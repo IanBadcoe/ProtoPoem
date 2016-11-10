@@ -1,8 +1,8 @@
 (function () {
-    angular.module("sparkleSys", ['$rootScope', '$timeOut'])
-        .service("sparkleSys", ['$rootScope', '$timeOut', function ($rootScope, $timeOut) {
+    angular.module("sparkleSysModule", [])
+        .service("sparkleSys", ['$rootScope', '$timeout', function ($rootScope, $timeout) {
             this.init =
-                function ($scope, phrases, subPage) {
+                function (phrases, $scope) {
                     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
                     var _sparkle_plane_scales = [0.3, 0.6, 0.8, 1.0];
@@ -14,7 +14,6 @@
                     var _reverse_step = 0;
                     var _v_scale = 0.5;
                     var _terminate = false;
-                    var _sub_page;
 
                     function end()
                     {
@@ -76,7 +75,7 @@
                             phrase.v = _sparkle_plane_scales[plane_idx];
                             phrase.w = phrase.v * 10;
 
-                            sparkles[plane_idx].push(phrase);
+                            $scope.sparkles[plane_idx].push(phrase);
                             _num_sparkles++;
                         }
 
@@ -97,8 +96,8 @@
                         }
 
                         for (var i = 0; i < 4; i++) {
-                            for (var j = 0; j < sparkles[i].length;) {
-                                var phrase = sparkles[i][j];
+                            for (var j = 0; j < $scope.sparkles[i].length;) {
+                                var phrase = $scope.sparkles[i][j];
 
                                 sparkleStep(phrase);
 
@@ -110,7 +109,7 @@
                                 };
 
                                 if (phrase.x > 100 || phrase.x < -20 || phrase.y > 110 || phrase.y < -10) {
-                                    sparkles[i].splice(j, 1);
+                                    $scope.sparkles[i].splice(j, 1);
                                     phrase.in_use = false;
                                     _num_sparkles--;
                                 }
@@ -130,31 +129,27 @@
                             phrase.in_use = false;
                         });
 
-                        sparkles = [[], [], [], []];
+                        $scope.sparkles = [[], [], [], []];
 
                         _num_sparkles = 0;
                     }
 
-                    function initSubPageSparkles(subPage) {
+                    function initSubPageSparkles() {
                         resetSparkles();
-
-                        _sub_page = subPage;
 
                         for (var i = 0; i < 10; i++) {
                             sparkleLoopAddOne(false);
                         }
                     }
 
-                    initSubPageSparkles(subPage);
+                    initSubPageSparkles();
 
                     $timeout(sparkleLoop, _time_step);
-                };
 
-                resetSparkles();
-
-                return {
-                    end: end,
-                    setSubPage: initSubPageSparkles
+                    return {
+                        end: end,
+                        beginSubPage: initSubPageSparkles
+                    };
                 };
         }])
 })();

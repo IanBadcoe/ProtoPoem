@@ -3,16 +3,16 @@
         .directive("animationEnd", function () {
             return {
                 restrict: "A",
-                $scope: {
+                scope: {
                     animationEnd: '&'
                 },
                 link: function ($scope, element) {
-                    var callback = $scope.animationEnd(),
-                        events = 'animationend webkitAnimationEnd MSAnimationEnd' +
-                            'transitionend webkitTransitionEnd';
+                    var events = 'animationend webkitAnimationEnd MSAnimationEnd' +
+                                 ' transitionend webkitTransitionEnd';
 
                     element.on(events, function (event) {
-                        callback.call(element[0], event);
+                        $scope.animationEnd().call(element[0], event);
+                        $scope.$apply();
                     });
                 }
             };

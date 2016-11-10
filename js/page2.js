@@ -7,6 +7,7 @@
 	      templateUrl: "/templates/page2template.html",
 	      restrict: "E",
 	      controller: ['$scope', '$element', function ($scope, $element) {
+              $scope.mySubPage = 1;
 	      }]
 	   };
 	});
