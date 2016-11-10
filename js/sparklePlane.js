@@ -12,7 +12,7 @@
         controller: ['$scope', '$element', function ($scope, $element) {
             $scope.depthFilter = function(x)
             {
-                return x.depth >= $scope.minDepth && x.depth < $scope.maxDepth;
+                return x.depth >= $scope.minDepth && x.depth < $scope.maxDepth && !x.found;
             }
         }]
       };

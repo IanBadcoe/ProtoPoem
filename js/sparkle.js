@@ -5,6 +5,9 @@
                 templateUrl: "templates/sparkleTemplate.html",
                 restrict: "E",
                 controller: ['$scope', '$element', function ($scope, $element) {
+                    $scope.onClick = function() {
+                        $scope.phrase.found = true;
+                    }
                 }]
             };
         });
