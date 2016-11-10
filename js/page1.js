@@ -3,8 +3,8 @@
         "I have no", "all good prunes", "sppons",
         "hats", "tree", "ape",
         "nose", "belief"];
-    phrases = phrases.map(function (txt) {
-        return { text: txt, in_use: false, found: false };
+    phrases = phrases.map(function (txt, idx) {
+        return { text: txt, in_use: false, found: false, index: idx };
     });
 
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule', 'sparkleSysModule'])

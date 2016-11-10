@@ -5,8 +5,6 @@
                 function (phrases, $scope) {
                     function randomElement(ary) { return ary[Math.floor(Math.random() * ary.length)]; }
 
-                    var _sparkle_plane_scales = [0.3, 0.6, 0.8, 1.0];
-
                     var _num_sparkles = 0;
                     var _sparkle_loop_cycle = 0;
                     var _time_step = 50;
@@ -70,12 +68,12 @@
                             }
                             phrase.y = Math.random() * 100;
 
-                            var plane_idx = Math.floor(Math.random() * 4);
+                            phrase.depth = Math.random() * 99 + 1;
 
-                            phrase.v = _sparkle_plane_scales[plane_idx];
+                            phrase.v = 25 / phrase.depth;
                             phrase.w = phrase.v * 10;
 
-                            $scope.sparkles[plane_idx].push(phrase);
+                            $scope.sparkles.push(phrase);
                             _num_sparkles++;
                         }
 
@@ -95,27 +93,25 @@
                             sparkleLoopAddOne(true);
                         }
 
-                        for (var i = 0; i < 4; i++) {
-                            for (var j = 0; j < $scope.sparkles[i].length;) {
-                                var phrase = $scope.sparkles[i][j];
+                        for (var j = 0; j < $scope.sparkles.length;) {
+                            var phrase = $scope.sparkles[j];
 
-                                sparkleStep(phrase);
+                            sparkleStep(phrase);
 
-                                phrase.style = {
-                                    left: "{x}%".format(phrase),
-                                    top: "{y}%".format(phrase),
-                                    width: "{w}%".format(phrase),
-                                    transform: "rotate({angle}deg)".format(phrase)
-                                };
+                            phrase.style = {
+                                left: "{x}%".format(phrase),
+                                top: "{y}%".format(phrase),
+                                width: "{w}%".format(phrase),
+                                transform: "rotate({angle}deg)".format(phrase)
+                            };
 
-                                if (phrase.x > 100 || phrase.x < -20 || phrase.y > 110 || phrase.y < -10) {
-                                    $scope.sparkles[i].splice(j, 1);
-                                    phrase.in_use = false;
-                                    _num_sparkles--;
-                                }
-                                else {
-                                    j++;
-                                }
+                            if (phrase.x > 100 || phrase.x < -20 || phrase.y > 110 || phrase.y < -10) {
+                                $scope.sparkles.splice(j, 1);
+                                phrase.in_use = false;
+                                _num_sparkles--;
+                            }
+                            else {
+                                j++;
                             }
                         }
 
@@ -129,7 +125,7 @@
                             phrase.in_use = false;
                         });
 
-                        $scope.sparkles = [[], [], [], []];
+                        $scope.sparkles = [];
 
                         _num_sparkles = 0;
                     }
