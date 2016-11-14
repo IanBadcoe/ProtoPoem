@@ -7,7 +7,8 @@
         return { text: txt, in_use: false, found: false, index: idx };
     });
 
-    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule', 'sparkleSysModule'])
+    angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule',
+                             'sparkleSysModule', 'phrasePlaneModule'])
         .directive("page1", ['sparkleSys', function (sparkleSys) {
             return {
                 templateUrl: "templates/page1template.html",
@@ -31,6 +32,8 @@
                         $scope.mySubPage = 1;
 
                         $scope.sparkleSys = sparkleSys.init(phrases, $scope);
+
+                        $scope.phrases = phrases;
                     }]
             };
         }])

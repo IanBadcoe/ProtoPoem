@@ -105,7 +105,7 @@
                                 transform: "rotate({angle}deg)".format(phrase)
                             };
 
-                            if (phrase.x > 100 || phrase.x < -20 || phrase.y > 110 || phrase.y < -10) {
+                            if (phrase.found || phrase.x > 100 || phrase.x < -20 || phrase.y > 110 || phrase.y < -10) {
                                 $scope.sparkles.splice(j, 1);
                                 phrase.in_use = false;
                                 _num_sparkles--;

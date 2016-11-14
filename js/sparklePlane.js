@@ -1,5 +1,5 @@
 (function () {
-  angular.module("sparklePlaneModule", [])
+  angular.module("sparklePlaneModule", ['sparkleModule'])
     .directive("sparklePlane", function () {
       return {
         templateUrl: "templates/sparklePlaneTemplate.html",
