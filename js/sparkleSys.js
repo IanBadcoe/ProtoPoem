@@ -10,7 +10,7 @@
                     var _time_step = 50;
                     var _step_scale = _time_step / 100;  // use this to scale things so hopefully if time_step is changed probabilities and velocities remain about the same
                     var _reverse_step = 0;
-                    var _v_scale = 0.5;
+                    var _v_scale = 0.15;
                     var _terminate = false;
 
                     function end()
@@ -61,7 +61,7 @@
                             phrase.rotation = (Math.random() - 0.3) * 20;
 
                             if (atStart) {
-                                phrase.x = 0;
+                                phrase.x = 14;
                             }
                             else {
                                 phrase.x = Math.random() * 100;;

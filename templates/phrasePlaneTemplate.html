@@ -1,3 +1,5 @@
-<div class="fill-parent no-hover">
-    <phrase ng-repeat="phrase in phrases | filter:foundFilter" />
+<div class="fill-parent phrase-plane-border" />
+<div class="fill-parent no-hover phrase-plane">
+    <p class="phrase phrase-caption">{{caption}}</p>
+    <p class="phrase" ng-repeat="phrase in phrases | filter:foundFilter">{{phrase.text}}</p>
 </div>

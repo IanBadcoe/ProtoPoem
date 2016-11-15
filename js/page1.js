@@ -1,8 +1,20 @@
 (function () {
-    var phrases = ["Too many stoats", "not enough string", "but don't ask me...",
-        "I have no", "all good prunes", "sppons",
-        "hats", "tree", "ape",
-        "nose", "belief"];
+    var caption = "One";
+    var phrases = [
+        "So deep.",
+        "So deep that all I hear",
+        "is metal stress;",
+        "the griping of the outer hull",
+        "as plates and rivets age at different rates.\n",
+        "The push",
+        "of time so pressing in",
+        "upon our moment here and now;",
+        "whatever 'now' may mean. Don't think",
+        "of that. Thoughts won't help us to survive;",
+        "if we still are an us? I'm wading",
+        "through the Lieutenant here",
+        "although there's so much blood I wonder...",
+        "Don't think of that."];
     phrases = phrases.map(function (txt, idx) {
         return { text: txt, in_use: false, found: false, index: idx };
     });
@@ -34,6 +46,7 @@
                         $scope.sparkleSys = sparkleSys.init(phrases, $scope);
 
                         $scope.phrases = phrases;
+                        $scope.caption = caption;
                     }]
             };
         }])

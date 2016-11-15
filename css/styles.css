@@ -134,6 +134,29 @@ body, .zero-spacing {
     pointer-events: none;
 }
 
+.phrase-plane-border {
+    width: 15%;
+    left: 0%;
+    background-color: black;
+}
+
+.phrase-plane {
+    padding: 3%;
+}
+
+.phrase-caption {
+    font-style: bold;
+    text-decoration: underline;
+    padding-bottom: 1em;
+}
+
+.phrase {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    text-shadow: 0.05em 0.1em black;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;
