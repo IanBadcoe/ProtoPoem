@@ -6,7 +6,8 @@
         restrict: "E",
         scope: {
             phrases: "=",
-            caption: "="
+            caption: "=",
+            subPageNum: "="
         },
         controller: ['$scope', '$element', function ($scope, $element) {
             $scope.foundFilter = function(x)

@@ -1,5 +1,8 @@
 (function () {
-    var caption = "One";
+    var caption = [ "Somewhere in Time",
+                    "Time, later the same day",
+                    "Another moment, possibly the same"];
+
     var phrases = [
         "So deep.",
         "So deep that all I hear",
