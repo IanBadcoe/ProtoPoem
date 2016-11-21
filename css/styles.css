@@ -22,6 +22,7 @@ body, .zero-spacing {
 
 .fill-parent-scroll-img {
     position: absolute;
+    left: 15%;
 	width: 100%;
     /* because we make some images taller than the div to allow perspective scrolling */
 	height: 110%;
