@@ -28,6 +28,14 @@ body, .zero-spacing {
 	height: 110%;
 }
 
+.fill-parent-scroll-img-2 {
+    position: absolute;
+    left: 15%;
+    /* because we make some images wider than the div to allow perspective scrolling */
+	width: 207%;
+	height: 100%;
+}
+
 @keyframes submove1 {
     0% {
         left: 15%;
@@ -67,6 +75,44 @@ body, .zero-spacing {
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     width: 30%;
+    /* let sparkles get properly hidden behind it */
+    pointer-events: auto;
+}
+
+@keyframes submove2 {
+    0% {
+        left: 5%;
+        top: 30%;
+    }
+
+    50% {
+        left: 50%;
+        top: 40%;
+    }
+
+    60% {
+        left: 60%;
+        top: 50%;
+    }
+
+    75% {
+        left: 80%;
+        top: 30%;
+    }
+
+    100% {
+        left: 110%;
+        top: 50%;
+    }
+}
+
+.submove2 {
+    position: absolute;
+    animation-name: submove2;
+    animation-duration: 32s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    width: 10%;
     /* let sparkles get properly hidden behind it */
     pointer-events: auto;
 }
@@ -118,6 +164,57 @@ body, .zero-spacing {
 .fog-taller2 {
     animation-name: fog-taller2-move;
     animation-duration: 16s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes fog-background2-move {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -50%;
+    }
+}
+
+.fog-background2 {
+    animation-name: fog-background2-move;
+    animation-duration: 32s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes fog-wider1-move {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -70%;
+    }
+}
+
+.fog-wider1 {
+    animation-name: fog-wider1-move;
+    animation-duration: 32s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes fog-wider2-move {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: -107%;
+    }
+}
+
+.fog-wider2 {
+    animation-name: fog-wider2-move;
+    animation-duration: 32s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
