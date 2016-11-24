@@ -36,6 +36,15 @@ body, .zero-spacing {
 	height: 100%;
 }
 
+.fill-parent-scroll-img-3 {
+    position: absolute;
+    left: -8%;
+    top: -53%;
+    /* because we make some images wider than the div to allow perspective scrolling */
+	width: 116%;
+	height: 206%;
+}
+
 @keyframes submove1 {
     0% {
         left: 15%;
@@ -110,6 +119,48 @@ body, .zero-spacing {
     position: absolute;
     animation-name: submove2;
     animation-duration: 32s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    width: 10%;
+    /* let sparkles get properly hidden behind it */
+    pointer-events: auto;
+}
+
+@keyframes submove3 {
+    0% {
+        left: 50%;
+        top: 80%;
+        transform: rotate(0deg);
+        width: 20%;
+    }
+
+    33% {
+        left: 50%;
+        top: 70%;
+        transform: rotate(360deg);
+        width: 13.2%;
+    }
+
+    66% {
+        left: 50%;
+        top: 60%;
+        transform: rotate(720deg);
+        width: 6.6%;
+    }
+
+    100% {
+        left: 50%;
+        top: 50%;
+        transform: rotate(1080deg);
+        width: 0%;
+    }
+
+}
+
+.submove3 {
+    position: absolute;
+    animation-name: submove3;
+    animation-duration: 60s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     width: 10%;
@@ -217,6 +268,40 @@ body, .zero-spacing {
     animation-duration: 32s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+}
+
+@keyframes fog-background3-move {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(260deg);
+    }
+}
+
+.fog-background3 {
+    animation-name: fog-background3-move;
+    animation-duration: 90s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.fog-rotate1 {
+    animation-name: fog-background3-move;
+    animation-duration: 45s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.fog-rotate2 {
+    animation-name: fog-background3-move;
+    animation-duration: 40s;
+    animation-fill-mode: backwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 .sparkle {

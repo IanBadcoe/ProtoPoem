@@ -40,11 +40,11 @@
                         $scope.terminate = false;
 
                         $scope.nextSubPage = function() {
-//                            $scope.mySubPage = $scope.mySubPage % 3 + 1;
+                            $scope.mySubPage = $scope.mySubPage % 3 + 1;
                             $scope.sparkleSys.beginSubPage();
                         };
 
-                        $scope.mySubPage = 2;
+                        $scope.mySubPage = 3;
 
                         $scope.sparkleSys = sparkleSys.init(phrases, $scope);
 
