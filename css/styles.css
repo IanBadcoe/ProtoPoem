@@ -38,7 +38,7 @@ body, .zero-spacing {
 
 .fill-parent-scroll-img-3 {
     position: absolute;
-    left: -8%;
+    left: -0.5%;
     top: -53%;
     /* because we make some images wider than the div to allow perspective scrolling */
 	width: 116%;
@@ -128,30 +128,34 @@ body, .zero-spacing {
 
 @keyframes submove3 {
     0% {
-        left: 50%;
+        left: 47%;
         top: 80%;
         transform: rotate(0deg);
+        transform-origin: 50% -150%;
         width: 20%;
     }
 
-    33% {
-        left: 50%;
+    40% {
+        left: 50.5%;
         top: 70%;
         transform: rotate(360deg);
-        width: 13.2%;
+        transform-origin: 50% -100%;
+        width: 15%;
     }
 
-    66% {
-        left: 50%;
+    80% {
+        left: 52%;
         top: 60%;
         transform: rotate(720deg);
-        width: 6.6%;
+        transform-origin: 50% -50%;
+        width: 10%;
     }
 
     100% {
-        left: 50%;
+        left: 57%;
         top: 50%;
         transform: rotate(1080deg);
+        transform-origin: 50% 0%;
         width: 0%;
     }
 
@@ -160,7 +164,7 @@ body, .zero-spacing {
 .submove3 {
     position: absolute;
     animation-name: submove3;
-    animation-duration: 60s;
+    animation-duration: 45s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     width: 10%;
@@ -276,13 +280,13 @@ body, .zero-spacing {
     }
 
     100% {
-        transform: rotate(260deg);
+        transform: rotate(360deg);
     }
 }
 
 .fog-background3 {
     animation-name: fog-background3-move;
-    animation-duration: 90s;
+    animation-duration: 270s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -290,16 +294,17 @@ body, .zero-spacing {
 
 .fog-rotate1 {
     animation-name: fog-background3-move;
-    animation-duration: 45s;
+    animation-duration: 120s;
     animation-fill-mode: forwards;
+    animation-direction: reverse;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 .fog-rotate2 {
     animation-name: fog-background3-move;
-    animation-duration: 40s;
-    animation-fill-mode: backwards;
+    animation-duration: 120s;
+    animation-fill-mode: forwards;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
