@@ -44,7 +44,7 @@
                             $scope.sparkleSys.beginSubPage();
                         };
 
-                        $scope.mySubPage = 3;
+                        $scope.mySubPage = 1;
 
                         $scope.sparkleSys = sparkleSys.init(phrases, $scope);
 
