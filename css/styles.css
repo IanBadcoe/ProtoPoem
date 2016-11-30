@@ -343,6 +343,11 @@ body, .zero-spacing {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3vh;
     text-shadow: 0.4vh 0.2vh black;
+    border: 3px double gray;
+    width: auto;
+    display: inline-block;
+    clear: both;
+    float: left;
 }
 
 /* temporary debugging helpers */

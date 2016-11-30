@@ -19,7 +19,18 @@
         "although there's so much blood I wonder...",
         "Don't think of that."];
     phrases = phrases.map(function (txt, idx) {
-        return { text: txt, in_use: false, found: false, index: idx };
+        var ret = {
+            text: txt,
+            in_use: false,
+            found: false,
+            index: idx
+        };
+
+        ret.onClick = function() {
+            ret.found = true;
+        }
+
+        return ret;
     });
 
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule',
