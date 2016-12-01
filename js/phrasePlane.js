@@ -5,15 +5,11 @@
         templateUrl: "templates/phrasePlaneTemplate.html",
         restrict: "E",
         scope: {
-            phrases: "=",
-            caption: "=",
+            foundPhrases: "=",
+            captions: "=",
             subPageNum: "="
         },
         controller: ['$scope', '$element', function ($scope, $element) {
-            $scope.foundFilter = function(x)
-            {
-                return x.found;
-            }
         }]
       };
     });

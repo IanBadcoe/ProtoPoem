@@ -5,7 +5,7 @@
         templateUrl: "templates/sparklePlaneTemplate.html",
         restrict: "E",
         scope: {
-            phrases: "=",
+            sparkles: "=",
             minDepth: "=",
             maxDepth: "="
         },
