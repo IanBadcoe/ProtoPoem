@@ -1,5 +1,5 @@
 <div class="fill-parent phrase-plane-border" />
 <div class="fill-parent no-hover phrase-plane">
     <p class="phrase phrase-caption">{{captions[subPageNum - 1]}}</p>
-    <p class="phrase" ng-repeat="foundPhrase in foundPhrases">{{foundPhrase.text}}</p>
+    <phrase class="phrase" ng-repeat="foundPhrase in foundPhrases" my-draggable my-drop-target/>
 </div>

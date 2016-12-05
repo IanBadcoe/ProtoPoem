@@ -1,5 +1,5 @@
 angular.module("dragdropModule", ['uuidModule'])
-    .directive('lvlDraggable', ['$rootScope', 'uuid', function ($rootScope, uuid) {
+    .directive('myDraggable', ['$rootScope', 'uuid', function ($rootScope, uuid) {
         return {
             restrict: 'A',
             link: function (scope, el, attrs, controller) {
@@ -13,18 +13,18 @@ angular.module("dragdropModule", ['uuidModule'])
                 }
 
                 el.bind("dragstart", function (e) {
-                    e.dataTransfer.setData('text', id);
+                    e.originalEvent.dataTransfer.setData('text', id);
 
-                    $rootScope.$emit("LVL-DRAG-START");
+                    $rootScope.$emit("DRAG-START");
                 });
 
                 el.bind("dragend", function (e) {
-                    $rootScope.$emit("LVL-DRAG-END");
+                    $rootScope.$emit("DRAG-END");
                 });
             }
         }
     }])
-    .directive('lvlDropTarget', ['$rootScope', 'uuid', function ($rootScope, uuid) {
+    .directive('myDropTarget', ['$rootScope', 'uuid', function ($rootScope, uuid) {
         return {
             restrict: 'A',
             scope: {
@@ -38,47 +38,47 @@ angular.module("dragdropModule", ['uuidModule'])
                 }
 
                 el.bind("dragover", function (e) {
-                    if (e.preventDefault) {
-                        e.preventDefault(); // Necessary. Allows us to drop.
+                    if (e.originalEvent.preventDefault) {
+                        e.originalEvent.preventDefault(); // Necessary. Allows us to drop.
                     }
 
-                    e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+                    e.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
                     return false;
                 });
 
                 el.bind("dragenter", function (e) {
                     // this / e.target is the current hover target.
-                    angular.element(e.target).addClass('lvl-over');
+                    angular.element(e.originalEvent.target).addClass('drag-drop-over');
                 });
 
                 el.bind("dragleave", function (e) {
-                    angular.element(e.target).removeClass('lvl-over');  // this / e.target is previous target element.
+                    angular.element(e.originalEvent.target).removeClass('drag-drop-over');  // this / e.target is previous target element.
                 });
 
                 el.bind("drop", function (e) {
-                    if (e.preventDefault) {
-                        e.preventDefault(); // Necessary. Allows us to drop.
+                    if (e.originalEvent.preventDefault) {
+                        e.originalEvent.preventDefault(); // Necessary. Allows us to drop.
                     }
 
-                    if (e.stopPropogation) {
-                        e.stopPropogation(); // Necessary. Allows us to drop.
+                    if (e.originalEvent.stopPropogation) {
+                        e.originalEvent.stopPropogation(); // Necessary. Allows us to drop.
                     }
-                    var data = e.dataTransfer.getData("text");
+                    var data = e.originalEvent.dataTransfer.getData("text");
                     var dest = document.getElementById(id);
                     var src = document.getElementById(data);
 
                     scope.onDrop({ dragEl: src, dropEl: dest });
                 });
 
-                $rootScope.$on("LVL-DRAG-START", function () {
+                $rootScope.$on("DRAG-START", function () {
                     var el = document.getElementById(id);
-                    angular.element(el).addClass("lvl-target");
+                    angular.element(el).addClass("drag-drop-target");
                 });
 
-                $rootScope.$on("LVL-DRAG-END", function () {
+                $rootScope.$on("DRAG-END", function () {
                     var el = document.getElementById(id);
-                    angular.element(el).removeClass("lvl-target");
-                    angular.element(el).removeClass("lvl-over");
+                    angular.element(el).removeClass("drag-drop-target");
+                    angular.element(el).removeClass("drag-drop-over");
                 });
             }
         }

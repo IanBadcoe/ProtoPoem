@@ -1,5 +1,5 @@
 (function () {
-  angular.module("phrasePlaneModule", [ "dragdropModule" ])
+  angular.module("phrasePlaneModule", [ "dragdropModule", "phraseModule" ])
     .directive("phrasePlane", function () {
       return {
         templateUrl: "templates/phrasePlaneTemplate.html",

@@ -348,6 +348,8 @@ body, .zero-spacing {
     display: inline-block;
     clear: both;
     float: left;
+    background: gray;
+    pointer-events: initial;
 }
 
 /* temporary debugging helpers */
