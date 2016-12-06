@@ -7,9 +7,14 @@
         scope: {
             foundPhrases: "=",
             captions: "=",
-            subPageNum: "="
+            subPageNum: "=",
+            onDrop: "&"
         },
         controller: ['$scope', '$element', function ($scope, $element) {
+            $scope.hereDrop = function(e)
+            {
+                $scope.onDrop()(e);
+            }
         }]
       };
     });

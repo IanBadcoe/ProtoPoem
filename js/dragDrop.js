@@ -5,11 +5,13 @@ angular.module("dragdropModule", ['uuidModule'])
             link: function (scope, el, attrs, controller) {
                 console.log("linking draggable element");
 
-                angular.element(el).attr("draggable", "true");
-                var id = attrs.id;
-                if (!attrs.id) {
+                var ang_el = angular.element(el);
+                ang_el.attr("draggable", "true");
+                var id = ang_el.attr("id");
+
+                if (!id) {
                     id = uuid.new()
-                    angular.element(el).attr("id", id);
+                    ang_el.attr("id", id);
                 }
 
                 el.bind("dragstart", function (e) {
@@ -31,10 +33,12 @@ angular.module("dragdropModule", ['uuidModule'])
                 onDrop: '&'
             },
             link: function (scope, el, attrs, controller) {
-                var id = attrs.id;
-                if (!attrs.id) {
+                var ang_el = angular.element(el);
+                var id = ang_el.attr("id");
+
+                if (!id) {
                     id = uuid.new()
-                    angular.element(el).attr("id", id);
+                    ang_el.attr("id", id);
                 }
 
                 el.bind("dragover", function (e) {
@@ -67,7 +71,7 @@ angular.module("dragdropModule", ['uuidModule'])
                     var dest = document.getElementById(id);
                     var src = document.getElementById(data);
 
-                    scope.onDrop({ dragEl: src, dropEl: dest });
+                    scope.onDrop()({ dragEl: src, dropEl: dest });
                 });
 
                 $rootScope.$on("DRAG-START", function () {

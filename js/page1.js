@@ -20,7 +20,7 @@
             return ret;
         });
     };
-    
+
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule',
                              'sparkleSysModule', 'phrasePlaneModule'])
         .directive("page1", ['sparkleSys', function (sparkleSys) {
@@ -67,6 +67,14 @@
                         $scope.sparkleSys = sparkleSys.init($scope.phrases, $scope);
 
                         $scope.foundPhrases = [];
+
+                        $scope.onPhraseDrop = function(e) {
+                            var ang_el_drag = angular.element(e.dragEl);
+                            var ang_el_drop = angular.element(e.dropEl);
+
+                            var scope_drag = ang_el_drag.scope();
+                            var scope_drop = ang_el_drop.scope();
+                        }
                     }]
             };
         }])
