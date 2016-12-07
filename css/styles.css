@@ -350,6 +350,13 @@ body, .zero-spacing {
     float: left;
 /*    background: gray; */
     pointer-events: initial;
+    padding: 0;
+    margin: 0 0 0.4vh 0;
+}
+
+.phrase p {
+    margin: 0vh 0vh 0.2vh 0vh;
+    border: 0;
 }
 
 /* temporary debugging helpers */

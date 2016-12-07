@@ -1,4 +1,8 @@
 (function () {
+    function checkMergeFoundPhrases($scope) {
+        
+    };
+
     function initPhrases($scope, phrases) {
         return phrases.map(function (txt, idx) {
             var ret = {
@@ -15,6 +19,8 @@
                 });
 
                 ret.found = true;
+
+                checkMergeFoundPhrases($scope);
             }
 
             return ret;
@@ -76,14 +82,12 @@
                             var scope_drop = ang_el_drop.scope();
 
                             if (scope_drag.foundPhrase != scope_drop.foundPhrase) {
-                                var start_idx = $scope.foundPhrases.findIndex(function (element) {
-                                    return scope_drag.foundPhrase == element;
-                                });
+                                var start_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drag.foundPhrase == element; });
                                 var p = $scope.foundPhrases.splice(start_idx, 1);
-                                var dest_idx = $scope.foundPhrases.findIndex(function (element) {
-                                    return scope_drop.foundPhrase == element;
-                                });
+                                var dest_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drop.foundPhrase == element; });
                                 $scope.foundPhrases.splice(dest_idx, 0, p[0]);
+
+                                checkMergeFoundPhrases($scope);
                             }
                         }
                     }]
