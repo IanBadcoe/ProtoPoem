@@ -8,7 +8,7 @@
                 index: idx
             };
 
-            ret.onClick = function() {
+            ret.onClick = function () {
                 $scope.foundPhrases.push({
                     text: ret.text,
                     index: ret.index
@@ -22,7 +22,7 @@
     };
 
     angular.module("page1", ['page1soundscapeModule', 'sparklePlaneModule', 'sparkleModule', 'animationEndModule',
-                             'sparkleSysModule', 'phrasePlaneModule'])
+        'sparkleSysModule', 'phrasePlaneModule'])
         .directive("page1", ['sparkleSys', function (sparkleSys) {
             return {
                 templateUrl: "templates/page1template.html",
@@ -38,7 +38,7 @@
 
                         $scope.terminate = false;
 
-                        $scope.nextSubPage = function() {
+                        $scope.nextSubPage = function () {
                             $scope.mySubPage = $scope.mySubPage % 3 + 1;
                             $scope.sparkleSys.beginSubPage();
                         };
@@ -60,7 +60,7 @@
                             "through the Lieutenant here",
                             "although there's so much blood I wonder...",
                             "Don't think of that."]);
-                        $scope.captions = [ "Somewhere in Time",
+                        $scope.captions = ["Somewhere in Time",
                             "Time, later the same day",
                             "Another moment, possibly the same"];
 
@@ -68,39 +68,50 @@
 
                         $scope.foundPhrases = [];
 
-                        $scope.onPhraseDrop = function(e) {
+                        $scope.onPhraseDrop = function (e) {
                             var ang_el_drag = angular.element(e.dragEl);
                             var ang_el_drop = angular.element(e.dropEl);
 
                             var scope_drag = ang_el_drag.scope();
                             var scope_drop = ang_el_drop.scope();
+
+                            if (scope_drag.foundPhrase != scope_drop.foundPhrase) {
+                                var start_idx = $scope.foundPhrases.findIndex(function (element) {
+                                    return scope_drag.foundPhrase == element;
+                                });
+                                var p = $scope.foundPhrases.splice(start_idx, 1);
+                                var dest_idx = $scope.foundPhrases.findIndex(function (element) {
+                                    return scope_drop.foundPhrase == element;
+                                });
+                                $scope.foundPhrases.splice(dest_idx, 0, p[0]);
+                            }
                         }
                     }]
             };
         }])
-        .directive("page1a", function() {
+        .directive("page1a", function () {
             return {
                 templateUrl: "templates/page1aTemplate.html",
                 restrict: "E",
-                controller: ['$scope', function($scope) {
+                controller: ['$scope', function ($scope) {
                     $scope.debug = "page1a";
                 }]
             };
         })
-        .directive("page1b", function() {
+        .directive("page1b", function () {
             return {
                 templateUrl: "templates/page1bTemplate.html",
                 restrict: "E",
-                controller: ['$scope', function($scope) {
+                controller: ['$scope', function ($scope) {
                     $scope.debug = "page1b";
                 }]
             };
         })
-        .directive("page1c", function() {
+        .directive("page1c", function () {
             return {
                 templateUrl: "templates/page1cTemplate.html",
                 restrict: "E",
-                controller: ['$scope', function($scope) {
+                controller: ['$scope', function ($scope) {
                     $scope.debug = "page1c";
                 }]
             };
