@@ -1,6 +1,18 @@
 (function () {
     function checkMergeFoundPhrases($scope) {
-        
+        var ff = $scope.foundPhrases;
+        for(var i = 0; i < ff.length - 1; ) {
+            if (ff[i].end_index == ff[i + 1].start_index - 1)
+            {
+                ff[i + 1].lines.forEach(function(elem) { ff[i].lines.push(elem); });
+                ff[i].end_index = ff[i + 1].end_index;
+                ff.splice(i + 1, 1);
+            }
+            else
+            {
+                i++;
+            }
+        }
     };
 
     function initPhrases($scope, phrases) {
@@ -14,8 +26,9 @@
 
             ret.onClick = function () {
                 $scope.foundPhrases.push({
-                    text: ret.text,
-                    index: ret.index
+                    lines: [ ret.text ],
+                    start_index: ret.index,
+                    end_index: ret.index
                 });
 
                 ret.found = true;
