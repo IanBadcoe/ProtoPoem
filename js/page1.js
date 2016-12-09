@@ -2,7 +2,7 @@
     function checkMergeFoundPhrases($scope) {
         var ff = $scope.foundPhrases;
         for(var i = 0; i < ff.length - 1; ) {
-            if (ff[i].end_index == ff[i + 1].start_index - 1)
+            if (ff[i].end_index === ff[i + 1].start_index - 1)
             {
                 ff[i + 1].lines.forEach(function(elem) { ff[i].lines.push(elem); });
                 ff[i].end_index = ff[i + 1].end_index;
@@ -25,11 +25,14 @@
             };
 
             ret.onClick = function () {
-                $scope.foundPhrases.push({
-                    lines: [ ret.text ],
+                var f_phrase = {
+                    lines: ret.text.split("*").filter(function(elem) { return elem.length > 0}),
                     start_index: ret.index,
-                    end_index: ret.index
-                });
+                    end_index: ret.index,
+                    linefeed_at_end: ret.text.endsWith("*"),
+                    paragraph_at_end: ret.text.endsWith("**")
+                };
+                $scope.foundPhrases.push(f_phrase);
 
                 ret.found = true;
 
@@ -65,19 +68,19 @@
                         $scope.mySubPage = 1;
 
                         $scope.phrases = initPhrases($scope, [
-                            "So deep.",
-                            "So deep that all I hear",
-                            "is metal stress;",
-                            "the griping of the outer hull",
-                            "as plates and rivets age at different rates.\n",
-                            "The push",
-                            "of time so pressing in",
-                            "upon our moment here and now;",
-                            "whatever 'now' may mean. Don't think",
-                            "of that. Thoughts won't help us to survive;",
-                            "if we still are an us? I'm wading",
-                            "through the Lieutenant here",
-                            "although there's so much blood I wonder...",
+                            "So deep. *",
+                            "So deep that all I hear *",
+                            "is metal stress; *",
+                            "the griping of the outer hull *",
+                            "as plates and rivets age at different rates. **",
+                            "The push *of time so pressing in *",
+                            "upon our moment here and now; *",
+                            "whatever 'now' may mean. ",
+                            "Don't think *of that. ",
+                            "Thoughts won't help us to survive; *",
+                            "if we still are an us? ",
+                            "I'm wading *through the Lieutenant here *",
+                            "although there's so much blood I wonder... *",
                             "Don't think of that."]);
                         $scope.captions = ["Somewhere in Time",
                             "Time, later the same day",
@@ -95,9 +98,9 @@
                             var scope_drop = ang_el_drop.scope();
 
                             if (scope_drag.foundPhrase != scope_drop.foundPhrase) {
-                                var start_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drag.foundPhrase == element; });
+                                var start_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drag.foundPhrase === element; });
                                 var p = $scope.foundPhrases.splice(start_idx, 1);
-                                var dest_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drop.foundPhrase == element; });
+                                var dest_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drop.foundPhrase === element; });
                                 $scope.foundPhrases.splice(dest_idx, 0, p[0]);
 
                                 checkMergeFoundPhrases($scope);
