@@ -359,6 +359,19 @@ body, .zero-spacing {
     border: 0;
 }
 
+.phrase div:hover {
+    position: relative;
+}
+
+.phrase div:hover:before {
+    content: url(/img/drag-ud.png);
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;
