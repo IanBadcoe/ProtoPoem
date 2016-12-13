@@ -343,7 +343,6 @@ body, .zero-spacing {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3vh;
     text-shadow: 0.4vh 0.2vh black;
-    border: 3px double gray;
     width: auto;
     display: inline-block;
     clear: both;
@@ -352,24 +351,35 @@ body, .zero-spacing {
     pointer-events: initial;
     padding: 0;
     margin: 0 0 0.4vh 0;
-}
-
-.phrase p {
-    margin: 0vh 0vh 0.2vh 0vh;
-    border: 0;
-}
-
-.phrase div:hover {
     position: relative;
 }
 
-.phrase div:hover:before {
-    content: url(/img/drag-ud.png);
+.phrase.drag-drop-over {
+    border-top: 1px solid white;
+}
+
+.phrase:hover {
+    background-color: rgba(48, 48, 48, 0.5);
+}
+
+.phrase p {
+    margin: 0;
+    border: 0;
+}
+
+.phrase-drag-drop {
     position: absolute;
-    display: inline-block;
-    left: 0;
+    visibility: hidden;
+    height: 3vh;
     top: 0;
-    height: 100%;
+    bottom: 0.2vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 100%;
+}
+
+.phrase:hover img {
+    visibility: visible;
 }
 
 /* temporary debugging helpers */

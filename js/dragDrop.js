@@ -27,6 +27,13 @@ angular.module("dragdropModule", ['uuidModule'])
         }
     }])
     .directive('myDropTarget', ['$rootScope', 'uuid', function ($rootScope, uuid) {
+        function findTargetParent(e) {
+            e = angular.element(e)
+            while(!e.attr("drop-target"))
+                e = angular.element(e.parent);
+
+            return e;
+        }
         return {
             restrict: 'A',
             scope: {
@@ -35,6 +42,8 @@ angular.module("dragdropModule", ['uuidModule'])
             link: function (scope, el, attrs, controller) {
                 var ang_el = angular.element(el);
                 var id = ang_el.attr("id");
+
+                ang_el.attr("drop-target", true);
 
                 if (!id) {
                     id = uuid.new()
@@ -51,12 +60,14 @@ angular.module("dragdropModule", ['uuidModule'])
                 });
 
                 el.bind("dragenter", function (e) {
+                    e = findTargetParent(e.originalEvent.target);
                     // this / e.target is the current hover target.
-                    angular.element(e.originalEvent.target).addClass('drag-drop-over');
+                    e.addClass('drag-drop-over');
                 });
 
                 el.bind("dragleave", function (e) {
-                    angular.element(e.originalEvent.target).removeClass('drag-drop-over');  // this / e.target is previous target element.
+                    e = findTargetParent(e.originalEvent.target);
+                    e.removeClass('drag-drop-over');  // this / e.target is previous target element.
                 });
 
                 el.bind("drop", function (e) {
