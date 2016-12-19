@@ -101,6 +101,8 @@
                                 var start_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drag.foundPhrase === element; });
                                 var p = $scope.foundPhrases.splice(start_idx, 1);
                                 var dest_idx = $scope.foundPhrases.findIndex(function (element) { return scope_drop.foundPhrase === element; });
+                                if (!e.above) dest_idx++;
+
                                 $scope.foundPhrases.splice(dest_idx, 0, p[0]);
 
                                 checkMergeFoundPhrases($scope);

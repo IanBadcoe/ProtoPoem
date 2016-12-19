@@ -354,8 +354,12 @@ body, .zero-spacing {
     position: relative;
 }
 
-.phrase.drag-drop-over {
+.phrase.drag-drop-over-before {
     border-top: 1px solid white;
+}
+
+.phrase.drag-drop-over-after {
+    border-bottom: 1px solid white;
 }
 
 .phrase:hover {

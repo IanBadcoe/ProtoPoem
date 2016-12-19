@@ -27,13 +27,17 @@ angular.module("dragdropModule", ['uuidModule'])
         }
     }])
     .directive('myDropTarget', ['$rootScope', 'uuid', function ($rootScope, uuid) {
-        function findTargetParent(e) {
-            e = angular.element(e)
-            while(!e.attr("drop-target"))
-                e = angular.element(e.parent);
+        function dropTargetParent(e) {
+            var f = angular.element(e)
+            while(f[0].parentElement && !f.attr("my-drop-target"))
+                f = angular.element(f[0].parentElement);
 
-            return e;
-        }
+            return f;
+        };
+
+        var mouseOver = null;
+        var above = false;
+
         return {
             restrict: 'A',
             scope: {
@@ -43,7 +47,7 @@ angular.module("dragdropModule", ['uuidModule'])
                 var ang_el = angular.element(el);
                 var id = ang_el.attr("id");
 
-                ang_el.attr("drop-target", true);
+                ang_el.attr("my-drop-target", true);
 
                 if (!id) {
                     id = uuid.new()
@@ -59,15 +63,48 @@ angular.module("dragdropModule", ['uuidModule'])
                     return false;
                 });
 
+                function unmouse(el) {
+                    if (el)
+                    {
+                        el.removeClass('drag-drop-over-before');
+                        el.removeClass('drag-drop-over-after');
+                    }
+                };
+
+                el.bind("dragover", function(e){
+                    var t = dropTargetParent(e.originalEvent.target);
+                    var rect = t[0].getBoundingClientRect();
+                    var el_top = rect.top;
+                    var el_height = t[0].offsetHeight;
+
+                    var frac_y = (e.pageY - el_top) / el_height;
+
+                    console.log(e.pageY - el_top, el_height, frac_y);
+
+                    above = frac_y < 0.5;
+
+                    if (above)
+                    {
+                        t.addClass('drag-drop-over-before');
+                        t.removeClass('drag-drop-over-after');
+                    }
+                    else
+                    {
+                        t.removeClass('drag-drop-over-before');
+                        t.addClass('drag-drop-over-after');
+                    }
+                });
+
                 el.bind("dragenter", function (e) {
-                    e = findTargetParent(e.originalEvent.target);
-                    // this / e.target is the current hover target.
-                    e.addClass('drag-drop-over');
+                    var t = dropTargetParent(e.originalEvent.target);
+
+                    unmouse(mouseOver);
+
+                    mouseOver = t;
                 });
 
                 el.bind("dragleave", function (e) {
-                    e = findTargetParent(e.originalEvent.target);
-                    e.removeClass('drag-drop-over');  // this / e.target is previous target element.
+                    unmouse(mouseOver);
                 });
 
                 el.bind("drop", function (e) {
@@ -82,7 +119,9 @@ angular.module("dragdropModule", ['uuidModule'])
                     var dest = document.getElementById(id);
                     var src = document.getElementById(data);
 
-                    scope.onDrop()({ dragEl: src, dropEl: dest });
+                    scope.onDrop()({ dragEl: src, dropEl: dest, above: above });
+
+                    unmouse(mouseOver);
                 });
 
                 $rootScope.$on("DRAG-START", function () {
