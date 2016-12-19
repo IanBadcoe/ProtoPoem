@@ -79,8 +79,6 @@ angular.module("dragdropModule", ['uuidModule'])
 
                     var frac_y = (e.pageY - el_top) / el_height;
 
-                    console.log(e.pageY - el_top, el_height, frac_y);
-
                     above = frac_y < 0.5;
 
                     if (above)

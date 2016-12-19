@@ -4,6 +4,10 @@
         for(var i = 0; i < ff.length - 1; ) {
             if (ff[i].end_index === ff[i + 1].start_index - 1)
             {
+                if (ff[i].paragraph_at_end) {
+                    ff[i].lines.push(" ");
+                }
+
                 ff[i + 1].lines.forEach(function(elem) { ff[i].lines.push(elem); });
                 ff[i].end_index = ff[i + 1].end_index;
                 ff.splice(i + 1, 1);
@@ -29,8 +33,9 @@
                     lines: ret.text.split("*").filter(function(elem) { return elem.length > 0}),
                     start_index: ret.index,
                     end_index: ret.index,
-                    linefeed_at_end: ret.text.endsWith("*"),
-                    paragraph_at_end: ret.text.endsWith("**")
+//                    linefeed_at_end: ret.text.endsWith("*"),
+                    paragraph_at_end: ret.text.endsWith("**"),
+                    linefeed_before: ret.text.startsWith("*")
                 };
                 $scope.foundPhrases.push(f_phrase);
 
@@ -68,20 +73,20 @@
                         $scope.mySubPage = 1;
 
                         $scope.phrases = initPhrases($scope, [
-                            "So deep. *",
-                            "So deep that all I hear *",
-                            "is metal stress; *",
-                            "the griping of the outer hull *",
-                            "as plates and rivets age at different rates. **",
-                            "The push *of time so pressing in *",
-                            "upon our moment here and now; *",
-                            "whatever 'now' may mean. ",
+                            "*So deep. *",
+                            "*So deep that all I hear *",
+                            "*is metal stress; *",
+                            "*the griping of the outer hull *",
+                            "*as plates and rivets age at different rates. **",
+                            "*The push *of time so pressing in *",
+                            "*upon our moment here and now; *",
+                            "*whatever 'now' may mean. ",
                             "Don't think *of that. ",
                             "Thoughts won't help us to survive; *",
-                            "if we still are an us? ",
+                            "* if we still are an us? ",
                             "I'm wading *through the Lieutenant here *",
-                            "although there's so much blood I wonder... *",
-                            "Don't think of that."]);
+                            "*although there's so much blood I wonder... *",
+                            "*Don't think of that."]);
                         $scope.captions = ["Somewhere in Time",
                             "Time, later the same day",
                             "Another moment, possibly the same"];
