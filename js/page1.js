@@ -5,11 +5,28 @@
             if (ff[i].end_index === ff[i + 1].start_index - 1)
             {
                 if (ff[i].paragraph_at_end) {
-                    ff[i].lines.push(" ");
+                    ff[i].lines.push("");
+                    // only do this once
+                    ff[i].paragraph_at_end = false;
+                }
+
+                if (!ff[i + 1].linefeed_before)
+                {
+                    var here_length = ff[i].lines.length;
+
+                    ff[i].lines[here_length - 1] = ff[i].lines[here_length - 1].concat(ff[i + 1].lines[0]);
+                    ff[i + 1].lines.splice(0, 1);
+                    // only do this once
+                    ff[i + 1].linefeed_before = false;
                 }
 
                 ff[i + 1].lines.forEach(function(elem) { ff[i].lines.push(elem); });
+
+                // we still end at the same point...
                 ff[i].end_index = ff[i + 1].end_index;
+                ff[i].paragraph_at_end = ff[i + 1].paragraph_at_end;
+
+                // discard merged elephant
                 ff.splice(i + 1, 1);
             }
             else

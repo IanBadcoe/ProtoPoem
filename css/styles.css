@@ -390,6 +390,10 @@ body, .zero-spacing {
     text-indent: 9vh
 }
 
+.phrase-para {
+    min-height: 1.5vh
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;
