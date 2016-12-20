@@ -36,7 +36,7 @@
         }
     };
 
-    function initPhrases($scope, phrases) {
+    function initPhrases($scope, phrases, page1soundscape) {
         return phrases.map(function (txt, idx) {
             var ret = {
                 text: txt,
@@ -50,11 +50,15 @@
                     lines: ret.text.split("*").filter(function(elem) { return elem.length > 0}),
                     start_index: ret.index,
                     end_index: ret.index,
-//                    linefeed_at_end: ret.text.endsWith("*"),
                     paragraph_at_end: ret.text.endsWith("**"),
-                    linefeed_before: ret.text.startsWith("*")
+                    linefeed_before: ret.text.startsWith("*"),
                 };
+                f_phrase.play = function() {
+                    page1soundscape.playVoiceRange(f_phrase.start_index, f_phrase.end_index);
+                };
+
                 $scope.foundPhrases.push(f_phrase);
+                f_phrase.play();
 
                 ret.found = true;
 
@@ -103,7 +107,8 @@
                             "* if we still are an us? ",
                             "I'm wading *through the Lieutenant here *",
                             "*although there's so much blood I wonder... *",
-                            "*Don't think of that."]);
+                            "*Don't think of that."],
+                            page1soundscape);
                         $scope.captions = ["Somewhere in Time",
                             "Time, later the same day",
                             "Another moment, possibly the same"];
