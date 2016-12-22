@@ -11,14 +11,14 @@
                 });
             };
 
-            sounds = [
+            var sounds = [
                 stdHowl("sound/wind/1.mp3"),
                 stdHowl("sound/wind/2.mp3"),
                 stdHowl("sound/wind/3.mp3"),
                 stdHowl("sound/wind/4.mp3")
             ];
 
-            voices = [
+            var voices = [
                 stdHowl("voice/1-00-So Deep.mp3"),
                 stdHowl("voice/1-01-So Deep That.mp3"),
                 stdHowl("voice/1-02-Is Metal Stress.mp3"),
@@ -35,6 +35,9 @@
                 stdHowl("voice/1-13-Don't Think.mp3")
             ];
 
+            var voiceHowl = null;
+            var voiceId = null;
+
             function launchSound() {
                 var x = Math.random() * 1000 - 500;
                 var y = Math.random() * 1000 - 500;
@@ -48,7 +51,11 @@
                 which.once("fade", function () {
                     // duration in seconds, fade in milliseconds
                     var remain = (which.duration(id) - which.seek(id)) * 1000;
-                    which.fade(1, 0, remain, id);
+                    // fade doesn't work on vanishingly small periods
+                    // and who9 can hear < 1ms anyway?
+                    if (remain > 1) {
+                        which.fade(1, 0, remain, id);
+                    }
                 }, id);
             }
 
@@ -65,8 +72,29 @@
             this.start = function () { running = true; step(); };
             this.end = function () { running = false; };
             this.playVoiceRange = function (startIdx, endIdx) {
-                var which = voices[startIdx];
-                which.play();
+                if (voiceHowl != null) {
+                    voiceHowl.fade(1, 0, 100, voiceId);
+                    voiceHowl.off("end", null, voiceId);
+                    voiceHowl = null;
+                    voiceId = null;
+                }
+
+                voiceStart = startIdx;
+                voiceEnd = endIdx;
+                voiceNext = startIdx - 1;
+
+                playNextVoice();
+            }
+
+            function playNextVoice() {
+                voiceNext++;
+
+                if (voiceNext <= voiceEnd)
+                {
+                    voiceHowl = voices[voiceNext];
+                    voiceId = voiceHowl.play();
+                    voiceHowl.on("end", playNextVoice, voiceId);
+                }
             };
         });
 })();

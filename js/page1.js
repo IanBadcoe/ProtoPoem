@@ -1,9 +1,11 @@
 (function () {
-    function checkMergeFoundPhrases($scope) {
+    function checkMergeFoundPhrases($scope, page1soundscape) {
         var ff = $scope.foundPhrases;
+        var found = -1;
         for(var i = 0; i < ff.length - 1; ) {
             if (ff[i].end_index === ff[i + 1].start_index - 1)
             {
+                found = i;
                 if (ff[i].paragraph_at_end) {
                     ff[i].lines.push("");
                     // only do this once
@@ -34,6 +36,10 @@
                 i++;
             }
         }
+
+        if (found != -1) {
+            page1soundscape.playVoiceRange(ff[found].start_index, ff[found].end_index);
+        }
     };
 
     function initPhrases($scope, phrases, page1soundscape) {
@@ -62,7 +68,7 @@
 
                 ret.found = true;
 
-                checkMergeFoundPhrases($scope);
+                checkMergeFoundPhrases($scope, page1soundscape);
             }
 
             return ret;
@@ -132,7 +138,7 @@
 
                                 $scope.foundPhrases.splice(dest_idx, 0, p[0]);
 
-                                checkMergeFoundPhrases($scope);
+                                checkMergeFoundPhrases($scope, page1soundscape);
                             }
                         }
                     }]
