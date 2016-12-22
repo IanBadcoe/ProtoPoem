@@ -315,7 +315,7 @@ body, .zero-spacing {
 }
 
 .sparkle:hover {
-    content: url("/img/sparkle-hover.png");
+    content: url("../img/sparkle-hover.png");
 }
 
 .no-hover {
