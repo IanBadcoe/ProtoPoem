@@ -71,7 +71,7 @@
 
             this.start = function () { running = true; step(); };
             this.end = function () { running = false; };
-            this.playVoiceRange = function (startIdx, endIdx) {
+            this.playVoiceRange = function (startIdx, endIdx, endCallback = null) {
                 if (voiceHowl != null) {
                     voiceHowl.fade(1, 0, 100, voiceId);
                     voiceHowl.off("end", null, voiceId);
@@ -84,17 +84,19 @@
                 voiceNext = startIdx - 1;
 
                 playNextVoice();
+
+                function playNextVoice() {
+                    voiceNext++;
+
+                    if (voiceNext <= voiceEnd) {
+                        voiceHowl = voices[voiceNext];
+                        voiceId = voiceHowl.play();
+                        voiceHowl.on("end", function () { playNextVoice() }, voiceId);
+                    }
+                    else if (endCallback != null) {
+                        endCallback();
+                    }
+                };
             }
-
-            function playNextVoice() {
-                voiceNext++;
-
-                if (voiceNext <= voiceEnd)
-                {
-                    voiceHowl = voices[voiceNext];
-                    voiceId = voiceHowl.play();
-                    voiceHowl.on("end", playNextVoice, voiceId);
-                }
-            };
         });
 })();

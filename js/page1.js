@@ -2,9 +2,8 @@
     function checkMergeFoundPhrases($scope, page1soundscape) {
         var ff = $scope.foundPhrases;
         var found = -1;
-        for(var i = 0; i < ff.length - 1; ) {
-            if (ff[i].end_index === ff[i + 1].start_index - 1)
-            {
+        for (var i = 0; i < ff.length - 1;) {
+            if (ff[i].end_index === ff[i + 1].start_index - 1) {
                 found = i;
                 if (ff[i].paragraph_at_end) {
                     ff[i].lines.push("");
@@ -12,8 +11,7 @@
                     ff[i].paragraph_at_end = false;
                 }
 
-                if (!ff[i + 1].linefeed_before)
-                {
+                if (!ff[i + 1].linefeed_before) {
                     var here_length = ff[i].lines.length;
 
                     ff[i].lines[here_length - 1] = ff[i].lines[here_length - 1].concat(ff[i + 1].lines[0]);
@@ -22,7 +20,7 @@
                     ff[i + 1].linefeed_before = false;
                 }
 
-                ff[i + 1].lines.forEach(function(elem) { ff[i].lines.push(elem); });
+                ff[i + 1].lines.forEach(function (elem) { ff[i].lines.push(elem); });
 
                 // we still end at the same point...
                 ff[i].end_index = ff[i + 1].end_index;
@@ -31,20 +29,22 @@
                 // discard merged elephant
                 ff.splice(i + 1, 1);
             }
-            else
-            {
+            else {
                 i++;
-            }
-
-            // if we get the unfound phrases down to none and the found ones all merged into one
-            // then we're done
-            if (ff.length === 1 && $scope.phrases.filter(function (x) { return !(x.found) }).length == 0) {
-                $scope.$emit("pageEnd", 1);
             }
         }
 
+
         if (found != -1) {
-            page1soundscape.playVoiceRange(ff[found].start_index, ff[found].end_index);
+            var callback = null;
+            
+            // if we get the unfound phrases down to none and the found ones all merged into one
+            // then we're done
+            if (ff.length === 1 && $scope.phrases.filter(function (x) { return !(x.found) }).length == 0) {
+                callback = function () { $scope.$emit("pageEnd", 1); };
+            }
+
+            page1soundscape.playVoiceRange(ff[found].start_index, ff[found].end_index, callback);
         }
     };
 
@@ -59,13 +59,13 @@
 
             ret.onClick = function () {
                 var f_phrase = {
-                    lines: ret.text.split("*").filter(function(elem) { return elem.length > 0}),
+                    lines: ret.text.split("*").filter(function (elem) { return elem.length > 0 }),
                     start_index: ret.index,
                     end_index: ret.index,
                     paragraph_at_end: ret.text.endsWith("**"),
                     linefeed_before: ret.text.startsWith("*"),
                 };
-                f_phrase.play = function() {
+                f_phrase.play = function () {
                     page1soundscape.playVoiceRange(f_phrase.start_index, f_phrase.end_index);
                 };
 
