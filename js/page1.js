@@ -35,6 +35,12 @@
             {
                 i++;
             }
+
+            // if we get the unfound phrases down to none and the found ones all merged into one
+            // then we're done
+            if (ff.length === 1 && $scope.phrases.filter(function (x) { return !(x.found) }).length == 0) {
+                $scope.$emit("pageEnd", 1);
+            }
         }
 
         if (found != -1) {

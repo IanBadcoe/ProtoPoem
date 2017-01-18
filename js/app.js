@@ -52,6 +52,13 @@
             setTimeout(doResizeLiveArea, 0);
 
             Howler.pos(0, 0, 0);
+
+            $rootScope.$on("pageEnd", function(event, num) {
+                if (num === 1)
+                {
+                    $scope.myPage = 2;
+                }
+            });
         }
         ]);
 })();
