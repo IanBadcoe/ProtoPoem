@@ -394,6 +394,18 @@ body, .zero-spacing {
     min-height: 1.5vh
 }
 
+.fog-background-4 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.fill-parent-scale-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;

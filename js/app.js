@@ -40,10 +40,10 @@
         live_area_ng_elem.css("height", $rootScope.live_height + "px");
     }
 
-    angular.module('app', ["page1", "page2", "page3"])
+    angular.module('app', ["page1", "page2", "page3", "page1out"])
         .controller('pageController', ['$scope', '$location', '$window', '$rootScope',
         function ($scope, $location, $window, $rootScope) {
-            $scope.myPage = 1;
+            $scope.myPage = 4;
             $scope.pageNavigate = function (i) { $scope.myPage = i; };
 
             function doResizeLiveArea() { resizeLiveArea($rootScope); }
@@ -56,7 +56,8 @@
             $rootScope.$on("pageEnd", function(event, num) {
                 if (num === 1)
                 {
-                    $scope.myPage = 2;
+                    // page 4 is the page 1 -> page 2 cut-scene
+                    $scope.myPage = 4;
                 }
             });
         }

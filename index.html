@@ -45,6 +45,7 @@
   <script src="js/page1soundscape.js"></script>
   <script src="js/sparklePlane.js"></script>
   <script src="js/page1.js"></script>
+  <script src="js/page1out.js"></script>
   <script src="js/page2.js"></script>
   <script src="js/page3.js"></script>
   <script src="js/sparkle.js"></script>
@@ -59,7 +60,7 @@
 </head>
 
 <body ng-app="app" ng-controller="pageController">
-  <div class="container-fluid navbar-inverse navbar-fixed-bottom my-nav-bar">
+  <div class="container-fluid navbar-inverse navbar-fixed-bottom my-nav-bar" ng-show="myPage < 4">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -76,7 +77,7 @@
       </ul>
     </div>
   </div>
-
+<!-- the show takes nagigation away when we're on "special" pages, "cut scenes" -->
   <div class="container-fluid zero-spacing" ng-switch="myPage">
     <div class="whole-screen zero-spacing">
       <!-- this following div we smart-resize with js to make the largest 16:9 rectangle that fits on the whole-screen minus the nav-bar -->
@@ -84,6 +85,7 @@
         <page1 ng-switch-when="1"></page1>
         <page2 ng-switch-when="2"></page2>
         <page3 ng-switch-when="3"></page3>
+        <page1out ng-switch-when="4"></page1out>
       </div>
     </div>
   </div>
