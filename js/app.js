@@ -43,7 +43,7 @@
     angular.module('app', ["page1", "page2", "page3", "page1out"])
         .controller('pageController', ['$scope', '$location', '$window', '$rootScope',
         function ($scope, $location, $window, $rootScope) {
-            $scope.myPage = 4;
+            $scope.myPage = 1;
             $scope.pageNavigate = function (i) { $scope.myPage = i; };
 
             function doResizeLiveArea() { resizeLiveArea($rootScope); }

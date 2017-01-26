@@ -36,16 +36,14 @@
 
 
         if (found != -1) {
-            var callback = null;
-
             // if we get the unfound phrases down to none and the found ones all merged into one
             // then we're done
             if (ff.length === 1 && $scope.phrases.filter(function (x) { return !(x.found) }).length == 0) {
-                callback = function () { $scope.$emit("pageEnd", 1); };
+                $scope.$emit("pageEnd", 1);
             }
             else
             {
-                page1soundscape.playVoiceRange(ff[found].start_index, ff[found].end_index, callback);
+                page1soundscape.playVoiceRange(ff[found].start_index, ff[found].end_index);
             }
         }
     };

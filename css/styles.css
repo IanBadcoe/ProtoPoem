@@ -406,6 +406,76 @@ body, .zero-spacing {
     height: 100%;
 }
 
+@keyframes fog-scale1-move {
+    0% {
+        top: -20%;
+        left: -20%;
+        height: 140%;
+        width: 140%;
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.fog-scale1 {
+    animation-name: fog-scale1-move;
+    animation-duration: 30s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes fog-scale2-move {
+    0% {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    100% {
+        top: -25%;
+        left: -45%;
+        height: 150%;
+        width: 150%;
+        opacity: 0;
+    }
+}
+
+.fog-scale2 {
+    animation-name: fog-scale2-move;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes subscale1 {
+    0% {
+        left: 70%;
+        top: 15%;
+        width: 15%;
+    }
+
+    100% {
+        left: -45%;
+        top: -90%;
+        width: 200%;
+    }
+}
+
+.subscale {
+    position: absolute;
+    animation-name: subscale1;
+    animation-duration: 50s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4,.1,.7,.7);
+    width: 30%;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;
