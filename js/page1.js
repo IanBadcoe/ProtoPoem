@@ -98,9 +98,19 @@
 
                         $scope.terminate = false;
 
+                        var fade_plane = angular.element($element.find(".fade-to-black"));
+
+                        function fadeTo(func) {
+                            $scope.fadeEnd = func;
+                            fade_plane.show();
+                        }
+
                         $scope.nextSubPage = function () {
-                            $scope.mySubPage = $scope.mySubPage % 3 + 1;
-                            $scope.sparkleSys.beginSubPage();
+                            fadeTo(function() {
+                                $scope.mySubPage = $scope.mySubPage % 3 + 1;
+                                $scope.sparkleSys.beginSubPage();
+                                fade_plane.hide();
+                            });
                         };
 
                         $scope.mySubPage = 1;

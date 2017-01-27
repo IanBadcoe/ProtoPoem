@@ -437,6 +437,14 @@ body, .zero-spacing {
         width: 100%;
     }
 
+    50% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
     100% {
         top: -25%;
         left: -45%;
@@ -460,6 +468,12 @@ body, .zero-spacing {
         width: 15%;
     }
 
+    50% {
+        left: -3%;
+        top: -3%;
+        width: 107%;
+    }
+
     100% {
         left: -45%;
         top: -90%;
@@ -470,10 +484,28 @@ body, .zero-spacing {
 .subscale {
     position: absolute;
     animation-name: subscale1;
-    animation-duration: 50s;
+    animation-duration: 30s;
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.4,.1,.7,.7);
     width: 30%;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-to-black {
+    animation-name: fade;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    background: rgb(0, 0, 0);
 }
 
 /* temporary debugging helpers */
