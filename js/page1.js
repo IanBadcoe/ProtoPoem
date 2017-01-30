@@ -100,25 +100,8 @@
 
                         var fade_plane = angular.element($element.find(".fade-to-black"));
 
-                        $scope.fading = false;
-
-                        $scope.fadeOutEndInternal = function(){
-                            $scope.fadingOut = false;
-                            $scope.fadingIn = true;
-                            $scope.fadeEnd();
-                        };
-
-                        $scope.fadeInEndInternal = function(){
-                            $scope.fadingIn = false;
-                        };
-
-                        function fadeTo(func) {
-                            $scope.fadeEnd = func;
-                            $scope.fadingOut = true;
-                        };
-
                         $scope.nextSubPage = function () {
-                            fadeTo(function() {
+                            $scope.fadeTo(function() {
                                 $scope.mySubPage = $scope.mySubPage % 3 + 1;
                                 $scope.sparkleSys.beginSubPage();
                                 fade_plane.hide();

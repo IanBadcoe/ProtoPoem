@@ -54,12 +54,34 @@
             Howler.pos(0, 0, 0);
 
             $rootScope.$on("pageEnd", function(event, num) {
-                if (num === 1)
-                {
-                    // page 4 is the page 1 -> page 2 cut-scene
-                    $scope.myPage = 4;
-                }
+                $scope.fadeTo(function(num) {
+                    if (num === 1)
+                    {
+                        // page 4 is the page 1 -> page 2 cut-scene
+                        $scope.myPage = 4;
+                    } else if (num === 4)
+                    {
+                        // page 4 is the page 1 -> page 2 cut-scene
+                        $scope.myPage = 2;
+                    }
+                });
             });
+
+            $scope.fadeOutEndInternal = function(){
+                $scope.fadingOut = false;
+                $scope.fadingIn = true;
+                $scope.fadeEnd();
+            };
+
+            $scope.fadeInEndInternal = function(){
+                $scope.fadingIn = false;
+            };
+
+            $scope.fadeTo = function (func) {
+                $scope.fadeEnd = func;
+                $scope.fadingOut = true;
+            };
+
         }
         ]);
 })();
