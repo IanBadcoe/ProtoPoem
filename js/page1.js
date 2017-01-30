@@ -100,10 +100,22 @@
 
                         var fade_plane = angular.element($element.find(".fade-to-black"));
 
+                        $scope.fading = false;
+
+                        $scope.fadeOutEndInternal = function(){
+                            $scope.fadingOut = false;
+                            $scope.fadingIn = true;
+                            $scope.fadeEnd();
+                        };
+
+                        $scope.fadeInEndInternal = function(){
+                            $scope.fadingIn = false;
+                        };
+
                         function fadeTo(func) {
                             $scope.fadeEnd = func;
-                            fade_plane.show();
-                        }
+                            $scope.fadingOut = true;
+                        };
 
                         $scope.nextSubPage = function () {
                             fadeTo(function() {

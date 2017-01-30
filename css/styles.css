@@ -502,9 +502,18 @@ body, .zero-spacing {
 
 .fade-to-black {
     animation-name: fade;
-    animation-duration: 10s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
     opacity: 0;
+    background: rgb(0, 0, 0);
+}
+
+.fade-from-black {
+    animation-name: fade;
+    animation-duration: 0.5s;
+    animation-fill-mode: backwards;
+    animation-direction: reverse;
+    opacity: 1;
     background: rgb(0, 0, 0);
 }
 
