@@ -54,7 +54,7 @@
             Howler.pos(0, 0, 0);
 
             $rootScope.$on("pageEnd", function(event, num) {
-                $scope.fadeTo(function(num) {
+                $scope.fadeTo(function() {
                     if (num === 1)
                     {
                         // page 4 is the page 1 -> page 2 cut-scene

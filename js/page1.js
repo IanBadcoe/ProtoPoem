@@ -98,13 +98,10 @@
 
                         $scope.terminate = false;
 
-                        var fade_plane = angular.element($element.find(".fade-to-black"));
-
                         $scope.nextSubPage = function () {
                             $scope.fadeTo(function() {
                                 $scope.mySubPage = $scope.mySubPage % 3 + 1;
                                 $scope.sparkleSys.beginSubPage();
-                                fade_plane.hide();
                             });
                         };
 
