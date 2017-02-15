@@ -516,6 +516,13 @@ body, .zero-spacing {
     background: rgb(0, 0, 0);
 }
 
+.fill-parent-parallax {
+    position: absolute;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+}
+
 /* temporary debugging helpers */
 .show-div-red {
     position: absolute;

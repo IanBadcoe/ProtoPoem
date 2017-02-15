@@ -8,6 +8,10 @@
 	      restrict: "E",
 	      controller: ['$scope', '$element', function ($scope, $element) {
               $scope.mySubPage = 1;
+
+              $scope.onMouseMove = function() {
+                  alert("mouse moved");
+              };
 	      }]
 	   };
 	});
