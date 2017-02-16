@@ -516,10 +516,14 @@ body, .zero-spacing {
     background: rgb(0, 0, 0);
 }
 
+/* moving and non-moving planes must be same width
+ * visible part is from 15% -> 100% so the default position here
+ * is left = 7.5% so half the spare width is lost on either side */
 .fill-parent-parallax {
     position: absolute;
-    left: -5%;
-    width: 110%;
+    overflow: hidden;
+    left: 7.5%;
+    width: 100%;
     height: 100%;
 }
 

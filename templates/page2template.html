@@ -1,4 +1,4 @@
-<img class="fill-parent" ng-src="img/page2-far.png" ng-mousemove="onMouseMove()"/>
-<img class="fill-parent-parallax no-hover" ng-src="img/page2-mid.png" />
-<img class="fill-parent-parallax no-hover" ng-src="img/page2-near.png" />
+<img class="fill-parent-parallax" ng-src="img/page2-far.png" ng-style="{ 'left' : far_parallax_x}"/>
+<img class="fill-parent-parallax no-hover" ng-src="img/page2-mid.png"  ng-mousemove="onMouseMove($event, $element)"/>
+<img class="fill-parent-parallax no-hover" ng-src="img/page2-near.png" ng-style="{ 'left' : near_parallax_x}"/>
 <phrase-plane found-phrases="foundPhrases" captions="captions" sub-page-num="mySubPage" />
