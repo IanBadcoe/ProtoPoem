@@ -522,7 +522,6 @@ body, .zero-spacing {
 .fill-parent-parallax {
     position: absolute;
     overflow: hidden;
-    left: 7.5%;
     width: 100%;
     height: 100%;
 }

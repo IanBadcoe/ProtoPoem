@@ -9,7 +9,7 @@
 	      controller: ['$scope', '$element', function ($scope, $element) {
               $scope.mySubPage = 1;
 
-              $scope.far_parallax_x = "7.5%";
+              $scope.mid_parallax_x = "7.5%";
               $scope.near_parallax_x = "7.5%";
 
               $scope.onMouseMove = function(e) {
@@ -19,10 +19,10 @@
 
                   var parallax = (fx - 0.5) * 15;
 
-                  var vals = { near: -parallax, far: parallax}
+                  var vals = { near: parallax + 7.5, mid: parallax / 5 + 7.5}
 
-                  $scope.far_parallax_x = "{far}%";
-                  $scope.near_parallax_x = "{near}%";
+                  $scope.mid_parallax_x = "{mid}%".format(vals);
+                  $scope.near_parallax_x = "{near}%".format(vals);
               };
 	      }]
 	   };
