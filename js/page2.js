@@ -1,30 +1,54 @@
 'use strict';
 
 (function () {
-   angular.module("page2", [])
-	.directive("page2", [ "$rootScope", function ($rootScope) {
-	   return {
-	      templateUrl: "templates/page2template.html",
-	      restrict: "E",
-	      controller: ['$scope', '$element', function ($scope, $element) {
-              $scope.mySubPage = 1;
+    angular.module("page2", [])
+        .directive("page2", ["$rootScope", function ($rootScope) {
+            return {
+                templateUrl: "templates/page2template.html",
+                restrict: "E",
+                controller: ['$scope', '$element', '$interval', function ($scope, $element, $interval) {
+                    $scope.mySubPage = 1;
 
-              $scope.mid_parallax_x = "7.5%";
-              $scope.near_parallax_x = "7.5%";
+                    $scope.far_parallax_x = "0%";
+                    $scope.mid_parallax_x = "0%";
+                    $scope.near_parallax_x = "0%";
 
-              $scope.onMouseMove = function(e) {
-                  // image is visible between 15% and 100% of the parent div
-                  var fx = (e.clientX - $rootScope.live_left) / $rootScope.live_width;
-                  fx = (fx - 0.15) / 0.85;
+                    var interval_promise = null;
+                    var scroll = 0;
 
-                  var parallax = (fx - 0.5) * 15;
+                    function cancelMove () {
+                        if (interval_promise) {
+                            $interval.cancel(interval_promise);
+                            interval_promise = null;
+                        }
+                    }
 
-                  var vals = { near: parallax + 7.5, mid: parallax / 5 + 7.5}
+                    function startMove (vel) {
+                        cancelMove();
 
-                  $scope.mid_parallax_x = "{mid}%".format(vals);
-                  $scope.near_parallax_x = "{near}%".format(vals);
-              };
-	      }]
-	   };
-	}]);
+                        interval_promise = $interval(function () {
+                            scroll = Math.min(Math.max(0, scroll + vel), 100);
+
+                            var vals = { near: scroll * 1.2, mid: scroll * 1.1, far: scroll }
+
+                            $scope.far_parallax_x = "{far}%".format(vals);
+                            $scope.mid_parallax_x = "{mid}%".format(vals);
+                            $scope.near_parallax_x = "{near}%".format(vals);
+                        }, 100);
+                    }
+
+                    $scope.leftStart = function (e) {
+                        startMove(-1);
+                    };
+
+                    $scope.rightStart = function (e) {
+                        startMove(1);
+                    };
+
+                    $scope.moveEnd = function (e) {
+                        cancelMove();
+                    };
+                }]
+            };
+        }]);
 })();
