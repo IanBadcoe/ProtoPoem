@@ -29,7 +29,24 @@
                         interval_promise = $interval(function () {
                             scroll = Math.min(Math.max(0, scroll + vel), 100);
 
-                            var vals = { near: scroll * 1.2, mid: scroll * 1.1, far: scroll }
+                            // scroll runs from 0 -> 100
+                            // images need to move their left by width - screen_width
+                            var far_aspect = 2500 / 900;
+                            var mid_aspect = 2640 / 900;
+                            var near_aspect = 2880 / 900;
+
+                            // each image has aspect_ratio - screen_aspect_ratio sticking out beyond the screen edge
+                            var far_extra = far_aspect - $rootScope.aspect_ratio;
+                            var mid_extra = mid_aspect - $rootScope.aspect_ratio;
+                            var near_extra = near_aspect - $rootScope.aspect_ratio;
+
+                            // so the max movement of each image as a % is 100 * that, and the current movement is -scroll * that
+                            // HOWEVER divide by the aspect ratio as we've calculated all this as a fraction of the height
+                            // not the width
+                            var vals = { near: -scroll * near_extra / $rootScope.aspect_ratio,
+                                mid: -scroll * mid_extra / $rootScope.aspect_ratio,
+                                far: -scroll * far_extra / $rootScope.aspect_ratio
+                            }
 
                             $scope.far_parallax_x = "{far}%".format(vals);
                             $scope.mid_parallax_x = "{mid}%".format(vals);
@@ -38,11 +55,11 @@
                     }
 
                     $scope.leftStart = function (e) {
-                        startMove(-1);
+                        startMove(-1.5);
                     };
 
                     $scope.rightStart = function (e) {
-                        startMove(1);
+                        startMove(1.5);
                     };
 
                     $scope.moveEnd = function (e) {
