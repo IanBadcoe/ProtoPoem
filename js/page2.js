@@ -45,21 +45,28 @@
                             // not the width
                             var vals = { near: -scroll * near_extra / $rootScope.aspect_ratio,
                                 mid: -scroll * mid_extra / $rootScope.aspect_ratio,
-                                far: -scroll * far_extra / $rootScope.aspect_ratio
+                                far: -scroll * far_extra / $rootScope.aspect_ratio,
+                                cl: (-scroll * near_extra / $rootScope.aspect_ratio) + 38.8,
+                                cl2: (-scroll * near_extra / $rootScope.aspect_ratio) + 42.1
                             }
 
                             $scope.far_parallax_x = "{far}%".format(vals);
                             $scope.mid_parallax_x = "{mid}%".format(vals);
                             $scope.near_parallax_x = "{near}%".format(vals);
-                        }, 100);
+                            $scope.cl_parallax_x = "{cl}%".format(vals);
+                            $scope.cl_parallax_x2 = "{cl2}%".format(vals);
+                            $scope.cl_top = "51.5%".format(vals);
+                            $scope.cl_bottom = "63.1%".format(vals);
+
+                        }, 10);
                     }
 
                     $scope.leftStart = function (e) {
-                        startMove(-1.5);
+                        startMove(-.15);
                     };
 
                     $scope.rightStart = function (e) {
-                        startMove(1.5);
+                        startMove(.15);
                     };
 
                     $scope.moveEnd = function (e) {
