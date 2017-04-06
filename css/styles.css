@@ -526,9 +526,11 @@ body, .zero-spacing {
     width: auto;
 }
 
-.composition_image {
+.composition-image {
     position: absolute;
     overflow: hidden;
+    width: auto;
+    height: auto;
 }
 
 .walk-button {

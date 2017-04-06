@@ -46,8 +46,8 @@
                             var vals = { near: -scroll * near_extra / $rootScope.aspect_ratio,
                                 mid: -scroll * mid_extra / $rootScope.aspect_ratio,
                                 far: -scroll * far_extra / $rootScope.aspect_ratio,
-                                cl: (-scroll * near_extra / $rootScope.aspect_ratio) + 38.8,
-                                cl2: (-scroll * near_extra / $rootScope.aspect_ratio) + 42.1
+                                cl: (-scroll * near_extra / $rootScope.aspect_ratio) + 78.06,
+                                cl2: (-scroll * near_extra / $rootScope.aspect_ratio) + 83.81
                             }
 
                             $scope.far_parallax_x = "{far}%".format(vals);
@@ -55,8 +55,8 @@
                             $scope.near_parallax_x = "{near}%".format(vals);
                             $scope.cl_parallax_x = "{cl}%".format(vals);
                             $scope.cl_parallax_x2 = "{cl2}%".format(vals);
-                            $scope.cl_top = "51.5%".format(vals);
-                            $scope.cl_bottom = "63.1%".format(vals);
+                            $scope.cl_top = "51.5%";
+                            $scope.cl_bottom = "63.1%";
 
                         }, 10);
                     }
