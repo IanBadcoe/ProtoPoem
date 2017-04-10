@@ -72,6 +72,8 @@
                     $scope.moveEnd = function (e) {
                         cancelMove();
                     };
+
+                    startMove(0);
                 }]
             };
         }]);

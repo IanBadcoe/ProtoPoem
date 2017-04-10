@@ -533,6 +533,10 @@ body, .zero-spacing {
     height: auto;
 }
 
+.check-list:hover {
+    content: url("../img/check-list-hl.png");
+}
+
 .walk-button {
     position: absolute;
     top: 0;
