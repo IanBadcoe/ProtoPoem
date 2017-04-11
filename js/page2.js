@@ -1,12 +1,19 @@
 'use strict';
 
 (function () {
-    angular.module("page2", [])
+    angular.module("page2", ['page2soundscapeModule'])
         .directive("page2", ["$rootScope", function ($rootScope) {
             return {
                 templateUrl: "templates/page2template.html",
                 restrict: "E",
-                controller: ['$scope', '$element', '$interval', function ($scope, $element, $interval) {
+                controller: ['$scope', '$element', '$interval', 'page2soundscape', function ($scope, $element, $interval, page2soundscape) {
+                    page2soundscape.start();
+
+                    $element.on("$destroy", function () {
+                        page2soundscape.end();
+                        $scope.sparkleSys.end();
+                    });
+                    
                     $scope.mySubPage = 1;
 
                     $scope.far_parallax_x = "0%";
