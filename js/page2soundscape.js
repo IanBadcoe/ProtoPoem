@@ -5,38 +5,29 @@
                 return new Howl({
                     src: [file],
                     panningModel: 'HRTF',
-                    refDistance: 10,
-                    rolloffFactor: 1,
+                    refDistance: 500,
+                    rolloffFactor: 0.5,
                     distanceModel: 'inverse'
                 });
             };
 
             var sounds = [
-                stdHowl("sound/wind/1.mp3"),
-                stdHowl("sound/wind/2.mp3"),
-                stdHowl("sound/wind/3.mp3"),
-                stdHowl("sound/wind/4.mp3")
+                stdHowl("sound/hull/bang.mp3"),
+                stdHowl("sound/hull/craaang.mp3"),
+                stdHowl("sound/hull/skreach1.mp3"),
+                stdHowl("sound/hull/skreach2.mp3")
             ];
 
             var voices = [
-                stdHowl("voice/1-00-So Deep.mp3"),
-                stdHowl("voice/1-01-So Deep That.mp3"),
-                stdHowl("voice/1-02-Is Metal Stress.mp3"),
-                stdHowl("voice/1-03-The Griping.mp3"),
-                stdHowl("voice/1-04-As Plates.mp3"),
-                stdHowl("voice/1-05-The Push.mp3"),
-                stdHowl("voice/1-06-Upon Our Moment.mp3"),
-                stdHowl("voice/1-07-Whatever Now.mp3"),
-                stdHowl("voice/1-08-Don't Think.mp3"),
-                stdHowl("voice/1-09-Thoughts Won't.mp3"),
-                stdHowl("voice/1-10-If We.mp3"),
-                stdHowl("voice/1-11-I'm Wading.mp3"),
-                stdHowl("voice/1-12-Although There's.mp3"),
-                stdHowl("voice/1-13-Don't Think.mp3")
+//                stdHowl("voice/1-00-So Deep.mp3"),
             ];
+
+            var clock = stdHowl("sound/inside/clock.mp3")
 
             var voiceHowl = null;
             var voiceId = null;
+
+            var clockId = null;
 
             function launchSound() {
                 var x = Math.random() * 1000 - 500;
@@ -66,10 +57,21 @@
 
                 launchSound();
 
-                setTimeout(step, Math.random() * 500 + 500);
+                setTimeout(step, Math.random() * 3000 + 3000);
             }
 
-            this.start = function () { running = true; step(); };
+            function playClock() {
+                if (!running) return;
+
+                clockId = clock.play();
+                clock.on("end", function() { playClock(); }, clockId);
+            }
+
+            this.start = function () {
+                running = true;
+                step();
+                playClock();
+            };
             this.end = function () { running = false; };
             this.playVoiceRange = function (startIdx, endIdx, endCallback = null) {
                 if (voiceHowl != null) {
