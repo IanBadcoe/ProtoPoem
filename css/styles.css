@@ -546,7 +546,7 @@ body, .zero-spacing {
 }
 
 .walk-left-button {
-    left: 0;
+    left: 15%;
 }
 
 .walk-right-button {
@@ -560,6 +560,10 @@ body, .zero-spacing {
     width: 100%;
     height: auto;
     margin: auto;
+}
+
+.page-2-inside {
+    left: 15%;
 }
 
 /* temporary debugging helpers */
