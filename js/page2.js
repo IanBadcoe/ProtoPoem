@@ -13,8 +13,8 @@
                         page2soundscape.end();
                         $scope.sparkleSys.end();
                     });
-                    
-                    $scope.mySubPage = 1;
+
+                    $scope.captions = ["Engine compartment"];
 
                     $scope.far_parallax_x = "0%";
                     $scope.mid_parallax_x = "0%";

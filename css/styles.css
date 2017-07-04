@@ -537,6 +537,10 @@ body, .zero-spacing {
     content: url("../img/check-list-hl.png");
 }
 
+.engine:hover {
+    content: url("../img/page2-mid-engine-hl.png");
+}
+
 .walk-button {
     position: absolute;
     top: 0;
