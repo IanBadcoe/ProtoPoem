@@ -38,24 +38,27 @@
 
                             // scroll runs from 0 -> 100
                             // images need to move their left by width - screen_width
-                            var far_aspect = 2500 / 900;
+                            var far_aspect = 2400 / 900;
                             var mid_aspect = 2640 / 900;
                             var near_aspect = 2880 / 900;
 
+                            var inner_aspect_ratio = $rootScope.aspect_ratio * 0.85;
+
                             // each image has aspect_ratio - screen_aspect_ratio sticking out beyond the screen edge
-                            var far_extra = far_aspect - $rootScope.aspect_ratio;
-                            var mid_extra = mid_aspect - $rootScope.aspect_ratio;
-                            var near_extra = near_aspect - $rootScope.aspect_ratio;
+                            // only 15% larger since I put the phrase plane on the left
+                            var far_extra = far_aspect - inner_aspect_ratio;
+                            var mid_extra = mid_aspect - inner_aspect_ratio;
+                            var near_extra = near_aspect - inner_aspect_ratio;
 
                             // so the max movement of each image as a % is 100 * that, and the current movement is -scroll * that
                             // HOWEVER divide by the aspect ratio as we've calculated all this as a fraction of the height
                             // not the width
                             var vals = {
-                                near: -scroll * near_extra / $rootScope.aspect_ratio,
-                                mid: -scroll * mid_extra / $rootScope.aspect_ratio,
-                                far: -scroll * far_extra / $rootScope.aspect_ratio,
-                                cl: (-scroll * near_extra / $rootScope.aspect_ratio) + 78.06,
-                                cl2: (-scroll * near_extra / $rootScope.aspect_ratio) + 83.81
+                                near: -scroll * near_extra / inner_aspect_ratio,
+                                mid: -scroll * mid_extra / inner_aspect_ratio,
+                                far: -scroll * far_extra / inner_aspect_ratio,
+                                cl: (-scroll * near_extra / inner_aspect_ratio) + 78.06,
+                                cl2: (-scroll * near_extra / inner_aspect_ratio) + 83.81
                             }
 
                             $scope.far_parallax_x = "{far}%".format(vals);

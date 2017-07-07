@@ -567,7 +567,10 @@ body, .zero-spacing {
 }
 
 .page-2-inside {
+    position: absolute;
     left: 15%;
+    width: 85%;
+    height: 100%;
 }
 
 /* temporary debugging helpers */
