@@ -50,7 +50,8 @@
                             // so the max movement of each image as a % is 100 * that, and the current movement is -scroll * that
                             // HOWEVER divide by the aspect ratio as we've calculated all this as a fraction of the height
                             // not the width
-                            var vals = { near: -scroll * near_extra / $rootScope.aspect_ratio,
+                            var vals = {
+                                near: -scroll * near_extra / $rootScope.aspect_ratio,
                                 mid: -scroll * mid_extra / $rootScope.aspect_ratio,
                                 far: -scroll * far_extra / $rootScope.aspect_ratio,
                                 cl: (-scroll * near_extra / $rootScope.aspect_ratio) + 78.06,
