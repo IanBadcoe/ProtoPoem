@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    angular.module("page2", ['page2soundscapeModule'])
+    angular.module("page2", ['page2soundscapeModule', 'compositionImageModule'])
         .directive("page2", ["$rootScope", function ($rootScope) {
             return {
                 templateUrl: "templates/page2template.html",
@@ -11,7 +11,6 @@
 
                     $element.on("$destroy", function () {
                         page2soundscape.end();
-                        $scope.sparkleSys.end();
                     });
 
                     $scope.captions = ["Engine compartment"];
