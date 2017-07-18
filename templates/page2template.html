@@ -1,6 +1,6 @@
 <div class="fill-parent">
     <div class="page-2-inside">
-        <composition-image image="img/page2-far.png" />
+        <composition-image ng-repeat="component in components" config="component" />
 <!--        <img class="fill-parent-parallax" ng-src="img/page2-far.png" ng-style="{ 'left' : far_parallax_x }"/>
         <img class="fill-parent-parallax no-hover" ng-src="img/page2-mid.png" ng-style="{ 'left' : mid_parallax_x }"/>
         <img class="composition-image engine" ng-src="img/page2-mid-engine.png" ng-style="{ 'left' : mid_parallax_x }"/>
