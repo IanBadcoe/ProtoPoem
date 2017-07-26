@@ -19,6 +19,7 @@
                         { image: "img/page2-far.png", scroll_width: 2400 },
                         { image: "img/page2-mid.png", scroll_width: 2640 },
                         { image: "img/page2-near.png", scroll_width: 2880 },
+                        { image: "img/check-list.png", scroll_width: 2880 /*, left: 78.06*/, bottom: 567},
                     ];
 
                     var interval_promise = null;

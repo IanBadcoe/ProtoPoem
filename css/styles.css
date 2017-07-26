@@ -530,8 +530,12 @@ body, .zero-spacing {
     position: absolute;
     overflow: hidden;
     width: auto;
-    height: auto;
+    height: 100%;
 }
+
+/*.composition-image-image {
+    position: absolute;
+} */
 
 .check-list:hover {
     content: url("../img/check-list-hl.png");

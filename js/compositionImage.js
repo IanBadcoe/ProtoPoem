@@ -1,21 +1,36 @@
 (function () {
+    var natural_height;
+    var natural_width;
+
     function recalcStyle(scope, rootScope) {
-        var aspect = scope.config.scroll_width / 900;
+        // wait until the image is loaded
+        if (!natural_height) return;
 
-        var inner_aspect_ratio = rootScope.aspect_ratio * 0.85;
+        // fullscreen images are this high
+        var unscaled_max_height = 900.0;
 
-        // each image has aspect_ratio - screen_aspect_ratio sticking out beyond the screen edge
-        // only 15% larger since I put the phrase plane on the left
-        var extra = aspect - inner_aspect_ratio;
+        // our graphics are created with a (max) height of unscaled_max_height
+        // so our on-screen height/width need to be in that ratio
+        var style_height = rootScope.live_height / unscaled_max_height * natural_height;
+        var style_width = rootScope.live_height / unscaled_max_height * natural_width;
 
-        // so the max movement of each image as a % is 100 * that, and the current movement is -scroll * that
-        // HOWEVER divide by the aspect ratio as we've calculated all this as a fraction of the height
-        // not the width
+        // the visible part of the screen is this wide
+        var inner_width = rootScope.live_width * 0.85;
+
+        // we can scroll by the difference between that and our scroll_width
+        var max_scroll = scope.config.scroll_width - inner_width;
+
         var vals = {
-            left: -scope.config.scroll * extra / inner_aspect_ratio
+            left: -scope.config.scroll * max_scroll / 100.0,
+            bottom: scope.config.bottom,
+            height: style_height,
+            width: style_width
         };
 
-        scope.left = "{left}%".format(vals);
+        scope.style_left = "{left}px".format(vals);
+        scope.style_bottom = "{bottom}px".format(vals);
+        scope.style_width = "{width}px".format(vals);
+        scope.style_height = "{height}px".format(vals);
     }
 
     angular.module("compositionImageModule", [])
@@ -27,12 +42,26 @@
                     config: "="
                 },
                 controller: ['$scope', '$element', function ($scope, $element) {
-                    $scope.left = "0%";
+                    $scope.config.left = $scope.config.left || 0.0;
+                    $scope.config.bottom = $scope.config.bottom || 0.0;
+                    $scope.config.scroll = $scope.config.scroll || 0.0;
 
                     $scope.$watch("config.scroll", function () {
                         recalcStyle($scope, $rootScope);
                     });
-                }]
+                }],
+                link: function (scope, el, attrs, controller) {
+                    var ang_el = angular.element(el);
+
+                    var my_image = angular.element(ang_el.find("img")[0]);
+
+                    my_image.bind('load', function() {
+                        natural_height = my_image[0].naturalHeight;
+                        natural_width = my_image[0].naturalWidth;
+
+                        recalcStyle(scope, $rootScope);
+                    });
+                }
             };
         }]);
 })();
