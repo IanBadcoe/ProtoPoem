@@ -38,6 +38,8 @@
         live_area_ng_elem.css("top", $rootScope.live_top + "px");
         live_area_ng_elem.css("width", $rootScope.live_width + "px");
         live_area_ng_elem.css("height", $rootScope.live_height + "px");
+
+        $rootScope.$emit("resize");
     }
 
     angular.module('app', ["page1", "page2", "page3", "page1out"])
