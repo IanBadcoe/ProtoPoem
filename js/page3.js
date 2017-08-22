@@ -4,7 +4,7 @@
    angular.module("page3", [])
 	.directive("page3", [ "$rootScope", function ($rootScope) {
 	   return {
-	      templateUrl: "templates/page2template.html",
+	      templateUrl: "templates/page3template.html",
 	      restrict: "E",
 	      controller: ['$scope', '$element', function ($scope, $element) {
               $scope.mySubPage = 1;

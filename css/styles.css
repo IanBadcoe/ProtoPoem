@@ -531,11 +531,15 @@ body, .zero-spacing {
     overflow: hidden;
     width: auto;
     height: 100%;
+    opacity: 0.25;
 }
 
-/*.composition-image-image {
+.composition-floor {
     position: absolute;
-} */
+    overflow: hidden;
+    width: auto;
+    height: 100%;
+}
 
 .check-list:hover {
     content: url("../img/check-list-hl.png");
@@ -603,4 +607,10 @@ body, .zero-spacing {
     height: 100%;
     border: solid blue 1px;
     box-sizing: border-box;
+}
+
+.bob {
+    position: absolute;
+    left: 100px;
+    transform: matrix(1,.2,0,1,0,0);
 }
