@@ -28,13 +28,17 @@
                 // we can scroll by the difference between that and our scroll_width
                 var back_max_scroll = $scope.config.back_scroll_width - inner_width;
                 var front_max_scroll = $scope.config.front_scroll_width - inner_width;
+                var max_diff = front_max_scroll - back_max_scroll;
+
+                var av_width = ($scope.config.back_scroll_width + $scope.config.front_scroll_width) / 2;
+                var proportion = (av_width - inner_width) / av_width;
 
                 var back_scroll = -$scope.config.scroll * back_max_scroll / 100.0 + $scope.config.left;
                 var front_scroll = -$scope.config.scroll * front_max_scroll / 100.0 + $scope.config.left;
 
                 var fb_diff = $scope.config.front_scroll_width - $scope.config.back_scroll_width;
 
-                var scroll_diff = front_scroll - back_scroll;
+                var scroll_diff = (front_scroll - back_scroll + max_diff / 2);// * proportion;
                 var skew = scroll_diff / $scope.calc_height;
 
                 $scope.style_left = -$scope.config.scroll * front_max_scroll / 100.0 + $scope.config.left * $scope.scale_factor - scroll_diff / 2 + "px";

@@ -17,17 +17,17 @@
 
                     $scope.back = { image: "img/page2-far.png", scroll_width: 2400 };
 
+                    $scope.floor = { image: "img/floor.png", front_scroll_width: 2880, back_scroll_width: 2400 };
+
                     $scope.components = [
 //                        { image: "img/page2-mid.png", scroll_width: 2640 },
-//                        { image: "img/instruments.png", image_hl: "img/instruments-hl.png", scroll_width: 2450, left: -50, bottom: 100 },
-//                        { image: "img/jengine.png", image_hl: "img/jengine-hl.png", scroll_width: 2760, left: 900, bottom: 50 },
-//                        { image: "img/cabinet.png", image_hl: "img/cabinet-hl.png", scroll_width: 2880, left: 2203, bottom: 0 },
-//                        { image: "img/pillar.png", scroll_width: 2880, left: 1440, bottom: 15 },
+                        { image: "img/instruments.png", image_hl: "img/instruments-hl.png", scroll_width: 2650, left: -50, bottom: 15 },
+                        { image: "img/jengine.png", image_hl: "img/jengine-hl.png", scroll_width: 2760, left: 900, bottom: 5 },
+                        { image: "img/cabinet.png", image_hl: "img/cabinet-hl.png", scroll_width: 2880, left: 2203, bottom: 0 },
                         { image: "img/page2-near.png", scroll_width: 2880 },
-//                        { image: "img/check-list.png", scroll_width: 2880, left: 1225, bottom: 350 },
+                        { image: "img/check-list.png", scroll_width: 2880, left: 1225, bottom: 350 },
+                        { image: "img/pillar.png", image_hl: "img/pillar-hl.png", scroll_width: 2950, left: -70, bottom: -100 },
                     ];
-
-                    $scope.floor = { image: "img/floor.png", front_scroll_width: 2880, back_scroll_width: 2400 };
 
                     var interval_promise = null;
                     var scroll = 0;
