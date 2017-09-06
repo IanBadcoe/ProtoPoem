@@ -527,6 +527,7 @@ body, .zero-spacing {
 }
 
 .composition-image {
+    display: inline-block;
     position: absolute;
     overflow: hidden;
     width: auto;

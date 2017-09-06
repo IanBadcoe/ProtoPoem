@@ -1,3 +1,4 @@
 <div ng-class="classes" ng-style="{ 'left' : style_left, 'bottom' : style_bottom, 'width' : style_width, 'height' : style_height }">
-    <img class="fill-parent" ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()" ng-src="{{config.image}}"/>
+    <img class="fill-parent" ng-repeat="image in images" ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()" ng-src="{{image.image}}"
+        ng-style="{ 'left': image.left, 'width': image.width }"/>
 </div>

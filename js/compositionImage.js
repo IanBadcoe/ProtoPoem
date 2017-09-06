@@ -15,6 +15,27 @@
                 $scope.style_width = $scope.scale_factor * $scope.config.natural_width + "px";
 
                 recalcStyle($scope, rootScope);
+
+                {
+                    var l = 0;
+                    $scope.config.image.forEach(function (x) {
+                        var w = $scope.widths[x.image];
+                        x.width = w * $scope.scale_factor;
+                        x.left = l;
+                        l = l + w;
+                    });
+                }
+
+                if ($scope.config.image_hl)
+                {
+                    var l = 0;
+                    $scope.config.image_hl.forEach(function (x) {
+                        var w = $scope.widths[x.image];
+                        x.width = w * $scope.scale_factor;
+                        x.left = l;
+                        l = l + w;
+                    });
+                }
             }
 
             function recalcStyle($scope, rootScope) {
@@ -38,45 +59,87 @@
                     config: "="
                 },
                 controller: ['$scope', '$element', function ($scope, $element) {
+                    $scope.widths = {};
+
                     $scope.config.left = $scope.config.left || 0.0;
                     $scope.config.bottom = $scope.config.bottom || 0.0;
                     $scope.config.scroll = $scope.config.scroll || 0.0;
-                    $scope.config.image_norm = $scope.config.image;
 
                     $scope.$watch("config.scroll", function () {
                         recalcStyle($scope, $rootScope);
                     });
 
-                    $rootScope.$on("resize", function () {
-                        handleResize($scope, $rootScope);
-                    });
-
                     $scope.classes = "composition-image no-hover zero-spacing";
 
+                    if (!Array.isArray($scope.config.image))
+                    {
+                        $scope.config.image = [ $scope.config.image ];
+                    }
+
+                    $scope.config.image = $scope.config.image.map(function (x) {
+                        return {
+                            image: x,
+                            left: 0,
+                            width: 0
+                        }
+                    });
+
+                    $scope.images = $scope.config.image;
+
                     if ($scope.config.image_hl) {
+                        if (!Array.isArray($scope.config.image_hl))
+                        {
+                            $scope.config.image_hl = [ $scope.config.image_hl ];
+                        }
+
                         $scope.mouseEnter = function() {
-                            $scope.config.image = $scope.config.image_hl;
+                            $scope.images = $scope.config.image_hl;
                         };
 
                         $scope.mouseLeave = function() {
-                            $scope.config.image = $scope.config.image_norm;
+                            $scope.images = $scope.config.image;
                         };
 
                         $scope.classes = "composition-image zero-spacing";
+
+                        $scope.config.image_hl = $scope.config.image_hl.map(function (x) {
+                            return {
+                                image: x,
+                                left: 0,
+                                width: 0
+                            }
+                        });
                     }
+
+                    $rootScope.$on("resize", function () {
+                        handleResize($scope, $rootScope);
+                    });
                 }],
                 link: function ($scope, el, attrs, controller) {
-                    var ang_el = angular.element(el);
+                    el.ready(function () {
+                        var ang_el = angular.element(el);
 
-                    var my_image = angular.element(ang_el.find("img")[0]);
+                        var my_images = angular.element(ang_el.find("img"));
 
-                    my_image.bind('load', function() {
-                        $scope.config.natural_height = my_image[0].naturalHeight;
-                        $scope.config.natural_width = my_image[0].naturalWidth;
+                        angular.element(my_images[0]).on("load", function(ev) {
+                            $scope.config.natural_height = ev.target.naturalHeight;
 
-                        handleResize($scope, $rootScope);
+                            handleResize($scope, $rootScope);
 
-                        $scope.$apply();
+                            $scope.$apply();
+                        });
+
+                        $scope.config.natural_width = 0;
+                        my_images.one("load", function(ev){
+                            $scope.config.natural_width += ev.target.naturalWidth;
+                            var name = ev.target.src;
+                            name = name.substring(name.lastIndexOf("img/"));
+                            $scope.widths[name] = ev.target.naturalWidth;
+
+                            handleResize($scope, $rootScope);
+
+                            $scope.$apply();
+                        });
                     });
                 }
             };
