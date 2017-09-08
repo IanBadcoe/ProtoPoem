@@ -105,11 +105,13 @@
                         }
 
                         $scope.mouseEnter = function() {
-                            $scope.hl = true;
+                            if ($scope.config.on)
+                                $scope.hl = true;
                         };
 
                         $scope.mouseLeave = function() {
-                            $scope.hl = false;
+                            if ($scope.config.on)
+                                $scope.hl = false;
                         };
 
                         $scope.classes = "hover";

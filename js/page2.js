@@ -20,13 +20,13 @@
                     $scope.floor = { image: "img/floor.png", front_scroll_width: 2880, back_scroll_width: 2400 };
 
                     $scope.components = [
-                        { image: "img/panel.png", image_hl: "img/panel-hl.png", scroll_width: 2400, left: 1800, bottom: 450 },
-                        { image: "img/instruments.png", image_hl: "img/instruments-hl.png", scroll_width: 2650, left: -50, bottom: 15 },
-                        { image: "img/cabinet.png", image_hl: "img/cabinet-hl.png", scroll_width: 2650, left: 2203, bottom: 80 },
-                        { image: ["img/jengine-l.png", "img/jengine-r.png"], image_hl: ["img/jengine-l-hl.png", "img/jengine-r-hl.png"], scroll_width: 2760, left: 700, bottom: 5 },
-                        { image: "img/page2-near.png", scroll_width: 2880 },
-                        { image: "img/check-list.png", scroll_width: 2880, left: 1225, bottom: 350 },
-                        { image: "img/pillar.png", image_hl: "img/pillar-hl.png", scroll_width: 2950, left: -70, bottom: -100 },
+                        { on: false, next: 2, image: "img/panel.png", image_hl: "img/panel-hl.png", scroll_width: 2400, left: 1800, bottom: 450 },
+                        { on: false, next: 6, image: "img/instruments.png", image_hl: "img/instruments-hl.png", scroll_width: 2650, left: -50, bottom: 15 },
+                        { on: false, next: 1, image: "img/cabinet.png", image_hl: "img/cabinet-hl.png", scroll_width: 2650, left: 2203, bottom: 80 },
+                        { on: false, next: 0, image: ["img/jengine-l.png", "img/jengine-r.png"], image_hl: ["img/jengine-l-hl.png", "img/jengine-r-hl.png"], scroll_width: 2760, left: 650, bottom: 5 },
+                        { on: false, image: "img/page2-near.png", scroll_width: 2880 },
+                        { on: true, next: 3, image: "img/check-list.png", image_hl: "img/check-list-hl.png", scroll_width: 2880, left: 1225, bottom: 350 },
+                        { on: false, next: -1, image: "img/pillar.png", image_hl: "img/pillar-hl.png", scroll_width: 2950, left: -70, bottom: -100 },
                     ];
 
                     var interval_promise = null;
