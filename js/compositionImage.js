@@ -14,15 +14,18 @@
                 $scope.style_height = $scope.scale_factor * $scope.config.natural_height + "px";
                 $scope.style_width = $scope.scale_factor * $scope.config.natural_width + "px";
 
-                recalcStyle($scope, rootScope);
-
                 {
                     var l = 0;
                     $scope.config.image.forEach(function (x) {
                         var w = $scope.widths[x.image];
-                        x.width = w * $scope.scale_factor;
-                        x.left = l;
-                        l = l + w;
+                        var h = $scope.heights[x.image];
+                        if (w) {
+                            x.width = w * $scope.scale_factor;
+                            x.height = h * $scope.scale_factor;
+                            x.left = l;
+                            console.log(x.image + ": " + w + "(" + x.width + ") " + l + "\n");
+                            l = l + x.width;
+                        }
                     });
                 }
 
@@ -31,11 +34,18 @@
                     var l = 0;
                     $scope.config.image_hl.forEach(function (x) {
                         var w = $scope.widths[x.image];
-                        x.width = w * $scope.scale_factor;
-                        x.left = l;
-                        l = l + w;
+                        var h = $scope.heights[x.image];
+                        if (w) {
+                            x.width = w * $scope.scale_factor;
+                            x.height = h * $scope.scale_factor;
+                            x.left = l;
+                            console.log(x.image + ": " + w + "(" + x.width + ") " + l + "\n");
+                            l = l + x.width;
+                        }
                     });
                 }
+
+                recalcStyle($scope, rootScope);
             }
 
             function recalcStyle($scope, rootScope) {
@@ -60,6 +70,7 @@
                 },
                 controller: ['$scope', '$element', function ($scope, $element) {
                     $scope.widths = {};
+                    $scope.heights = {};
 
                     $scope.config.left = $scope.config.left || 0.0;
                     $scope.config.bottom = $scope.config.bottom || 0.0;
@@ -69,7 +80,7 @@
                         recalcStyle($scope, $rootScope);
                     });
 
-                    $scope.classes = "composition-image no-hover zero-spacing";
+                    $scope.classes = "no-hover";
 
                     if (!Array.isArray($scope.config.image))
                     {
@@ -80,11 +91,12 @@
                         return {
                             image: x,
                             left: 0,
-                            width: 0
+                            width: 0,
+                            height: 0
                         }
                     });
 
-                    $scope.images = $scope.config.image;
+                    $scope.hl = false;
 
                     if ($scope.config.image_hl) {
                         if (!Array.isArray($scope.config.image_hl))
@@ -93,14 +105,14 @@
                         }
 
                         $scope.mouseEnter = function() {
-                            $scope.images = $scope.config.image_hl;
+                            $scope.hl = true;
                         };
 
                         $scope.mouseLeave = function() {
-                            $scope.images = $scope.config.image;
+                            $scope.hl = false;
                         };
 
-                        $scope.classes = "composition-image zero-spacing";
+                        $scope.classes = "hover";
 
                         $scope.config.image_hl = $scope.config.image_hl.map(function (x) {
                             return {
@@ -135,6 +147,7 @@
                             var name = ev.target.src;
                             name = name.substring(name.lastIndexOf("img/"));
                             $scope.widths[name] = ev.target.naturalWidth;
+                            $scope.heights[name] = ev.target.naturalHeight;
 
                             handleResize($scope, $rootScope);
 

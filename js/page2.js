@@ -20,8 +20,7 @@
                     $scope.floor = { image: "img/floor.png", front_scroll_width: 2880, back_scroll_width: 2400 };
 
                     $scope.components = [
-                        { image: "img/panel.png", image_hl: "img/panel-hl.png", scroll_width: 2400, left: 1400, bottom: 450 },
-//                        { image: "img/page2-mid.png", scroll_width: 2640 },
+                        { image: "img/panel.png", image_hl: "img/panel-hl.png", scroll_width: 2400, left: 1800, bottom: 450 },
                         { image: "img/instruments.png", image_hl: "img/instruments-hl.png", scroll_width: 2650, left: -50, bottom: 15 },
                         { image: "img/cabinet.png", image_hl: "img/cabinet-hl.png", scroll_width: 2650, left: 2203, bottom: 80 },
                         { image: ["img/jengine-l.png", "img/jengine-r.png"], image_hl: ["img/jengine-l-hl.png", "img/jengine-r-hl.png"], scroll_width: 2760, left: 700, bottom: 5 },

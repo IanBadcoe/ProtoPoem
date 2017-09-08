@@ -322,6 +322,10 @@ body, .zero-spacing {
     pointer-events: none;
 }
 
+.hover {
+    pointer-events: auto;
+}
+
 .phrase-plane-border {
     width: 15%;
     left: 0%;
@@ -527,18 +531,19 @@ body, .zero-spacing {
 }
 
 .composition-image {
-    display: inline-block;
     position: absolute;
     overflow: hidden;
-    width: auto;
-    height: 100%;
+}
+
+.composition-image img {
+    position: absolute;
+    bottom: 0px;
+/*    border: solid red 1px; */
 }
 
 .composition-floor {
     position: absolute;
     overflow: hidden;
-    width: auto;
-    height: 100%;
 }
 
 .check-list:hover {
