@@ -110,8 +110,11 @@
                         };
 
                         $scope.mouseLeave = function() {
-                            if ($scope.config.on)
-                                $scope.hl = false;
+                            $scope.hl = false;
+                        };
+
+                        $scope.onClick = function() {
+                            return $scope.config.onClick();
                         };
 
                         $scope.classes = "hover";

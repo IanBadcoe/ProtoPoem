@@ -27,7 +27,20 @@
                         { on: false, image: "img/page2-near.png", scroll_width: 2880 },
                         { on: true, next: 3, image: "img/check-list.png", image_hl: "img/check-list-hl.png", scroll_width: 2880, left: 1225, bottom: 350 },
                         { on: false, next: -1, image: "img/pillar.png", image_hl: "img/pillar-hl.png", scroll_width: 2950, left: -70, bottom: -100 },
-                    ];
+                    ].map(function (x) {
+                        x.onClick = function() {
+                            x.on = false;
+                            if (x.next != -1)
+                            {
+                                $scope.components[x.next].on = true;
+                            }
+                            else
+                            {
+                                nextPage();
+                            }
+                        };
+                        return x;
+                    });
 
                     var interval_promise = null;
                     var scroll = 0;
