@@ -63,6 +63,7 @@
 </head>
 
 <body ng-app="app" ng-controller="pageController">
+  <!-- the show takes nagigation away when we're on "special" pages, "cut scenes" -->
   <div class="container-fluid navbar-inverse navbar-fixed-bottom my-nav-bar" ng-show="myPage < 4">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -80,7 +81,6 @@
       </ul>
     </div>
   </div>
-<!-- the show takes nagigation away when we're on "special" pages, "cut scenes" -->
   <div class="container-fluid zero-spacing" ng-switch="myPage">
     <div class="whole-screen zero-spacing">
       <!-- this following div we smart-resize with js to make the largest 16:9 rectangle that fits on the whole-screen minus the nav-bar -->

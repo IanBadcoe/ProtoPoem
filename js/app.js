@@ -73,15 +73,18 @@
                 $scope.fadingOut = false;
                 $scope.fadingIn = true;
                 $scope.fadeEnd();
+                $scope.$apply();
             };
 
             $scope.fadeInEndInternal = function(){
                 $scope.fadingIn = false;
+                $scope.$apply();
             };
 
             $scope.fadeTo = function (func) {
                 $scope.fadeEnd = func;
                 $scope.fadingOut = true;
+                $scope.$apply();
             };
 
         }

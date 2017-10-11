@@ -19,7 +19,7 @@
             ];
 
             var voices = [
-//                stdHowl("voice/1-00-So Deep.mp3"),
+                stdHowl("voice/1-00-So Deep.mp3"),
             ];
 
             var clock = stdHowl("sound/inside/clock.mp3")
