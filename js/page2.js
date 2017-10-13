@@ -30,7 +30,6 @@
                     ].map(function (x) {
                         x.onClick = function() {
                             x.on = false;
-                            page2soundscape.playVoiceRange(x.voice, x.voice, null);
 
                             var f_phrase = {
                                 lines: x.text.split("*").filter(function (elem) { return elem.length > 0 }),
@@ -44,11 +43,14 @@
 
                             if (x.next != -1)
                             {
+                                page2soundscape.playVoiceRange(x.voice, x.voice, null);
                                 $scope.components[x.next].on = true;
                             }
                             else
                             {
-//                                nextPage();
+                                page2soundscape.playVoiceRange(6, 6, function() {
+                                    $scope.$emit("pageEnd", 2);
+                                });
                             }
                         };
                         return x;

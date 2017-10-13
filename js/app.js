@@ -65,6 +65,9 @@
                     {
                         // page 4 is the page 1 -> page 2 cut-scene
                         $scope.myPage = 2;
+                    } else if (num == 2)
+                    {
+                        $scope.myPage = 3;
                     }
                 });
             });

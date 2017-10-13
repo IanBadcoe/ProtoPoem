@@ -25,6 +25,7 @@
                 stdHowl("voice/2-03-Air.mp3"),
                 stdHowl("voice/2-04-Position.mp3"),
                 stdHowl("voice/2-05-The blower.mp3"),
+                stdHowl("voice/2-xx-all.mp3"),
             ];
 
             var clock = stdHowl("sound/inside/clock.mp3")
@@ -77,7 +78,10 @@
                 step();
                 playClock();
             };
-            this.end = function () { running = false; };
+            this.end = function () {
+                running = false;
+                clock.fade(1, 0, 500, clockId);
+            };
             this.playVoiceRange = function (startIdx, endIdx, endCallback = null) {
                 if (voiceHowl != null) {
                     voiceHowl.fade(1, 0, 100, voiceId);
