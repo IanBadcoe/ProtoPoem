@@ -23,7 +23,7 @@
                             x.width = w * $scope.scale_factor;
                             x.height = h * $scope.scale_factor;
                             x.left = l;
-                            console.log(x.image + ": " + w + "(" + x.width + ") " + l + "\n");
+
                             l = l + x.width;
                         }
                     });
@@ -39,7 +39,7 @@
                             x.width = w * $scope.scale_factor;
                             x.height = h * $scope.scale_factor;
                             x.left = l;
-                            console.log(x.image + ": " + w + "(" + x.width + ") " + l + "\n");
+
                             l = l + x.width;
                         }
                     });

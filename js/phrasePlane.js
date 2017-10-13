@@ -8,7 +8,8 @@
             foundPhrases: "=",
             captions: "=",
             subPageNum: "=",
-            onDrop: "&"
+            onDrop: "&",
+            allowDragDrop: "="
         },
         controller: ['$scope', '$element', function ($scope, $element) {
             $scope.hereDrop = function(e)

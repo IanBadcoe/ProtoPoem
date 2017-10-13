@@ -19,7 +19,12 @@
             ];
 
             var voices = [
-                stdHowl("voice/1-00-So Deep.mp3"),
+                stdHowl("voice/2-00-Checklist.mp3"),
+                stdHowl("voice/2-01-Engine.mp3"),
+                stdHowl("voice/2-02-Hull.mp3"),
+                stdHowl("voice/2-03-Air.mp3"),
+                stdHowl("voice/2-04-Position.mp3"),
+                stdHowl("voice/2-05-The blower.mp3"),
             ];
 
             var clock = stdHowl("sound/inside/clock.mp3")

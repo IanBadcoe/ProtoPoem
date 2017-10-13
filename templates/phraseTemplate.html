@@ -1,2 +1,2 @@
-<img ng-src="img/drag-ud.png" class="phrase-drag-drop" />
+<img ng-src="img/drag-ud.png" class="phrase-drag-drop" ng-if="allowDragDrop" />
 <p class="phrase-para" ng-repeat="line in foundPhrase.lines" ng-class="{ 'indent-line': $first && !foundPhrase.linefeed_before }">{{line}}</p>
