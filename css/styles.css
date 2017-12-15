@@ -395,7 +395,8 @@ body, .zero-spacing {
 }
 
 .phrase-para {
-    min-height: 1.5vh
+    min-height: 1.5vh;
+    line-height: 1.1;
 }
 
 .fog-background-4 {

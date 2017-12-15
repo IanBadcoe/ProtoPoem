@@ -51,6 +51,36 @@
                                 page2soundscape.playVoiceRange(6, 6, function() {
                                     $scope.$emit("pageEnd", 2);
                                 });
+
+                                $scope.foundPhrases = [
+                                    "Situational assessment: do not say fucked",
+                                    "instead the check-list. Engine:",
+                                    "good: great lump of clock-springs",
+                                    "that it is, but wound-- if only I'd a course",
+                                    "to steer. Hull: I'm alive...",
+                                    "and for the air: see also as above.",
+                                    "Position: unknown: some shrapnel smashed the gauges",
+                                    "but what needles remain are jammed",
+                                    "against the end stops. We're falling-free, I guess,",
+                                    "",
+                                    "somewhen/where deep in history. Now...",
+                                    "can I call the bridge up",
+                                    "on the blower. Hallo... hallo... Kapitän?",
+                                    "Nothing. Hallo? Well maybe this is for the best.",
+                                    "The Lieutenant told me, late on watch,",
+                                    "he'd seen the belfry of the Z-16",
+                                    "five thousand years beneath us",
+                                    "a skeleton in a Captain's cap",
+                                    "still standing at the wheel. That's odd,"].map(
+                                        function(t) {
+                                            return {
+                                                lines: [t],
+                                                start_index: -1,
+                                                end_index: -1,
+                                                paragraph_at_end: true,
+                                                linefeed_before: true
+                                            };
+                                        });
                             }
                         };
                         return x;
